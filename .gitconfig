@@ -1,0 +1,9 @@
+[init]
+	defaultBranch = main
+
+[user]
+	name = Joel Lau
+	email = 29514264+JoelLau@users.noreply.github.com
+
+[core]
+	editor = code --wait

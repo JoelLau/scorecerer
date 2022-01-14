@@ -1,0 +1,21 @@
+# adapted from https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files#answer-987162
+
+# Ignore everything
+*
+
+# But not these files...
+!.gitconfig
+!.gitignore
+!.hushlogin
+!.skhdrc
+!.yabairc
+!LICENSE
+!README.md
+
+# zsh config
+!.zshenv
+!.zshrc
+!.config/
+!.config/zsh/
+!.config/zsh/**.zsh
+.config/zsh/local.zsh
