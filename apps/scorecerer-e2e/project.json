@@ -1,0 +1,28 @@
+{
+  "root": "apps/scorecerer-e2e",
+  "sourceRoot": "apps/scorecerer-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/scorecerer-e2e/cypress.json",
+        "devServerTarget": "scorecerer:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "scorecerer:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/scorecerer-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["scorecerer"]
+}

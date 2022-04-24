@@ -1,0 +1,84 @@
+{
+  "root": "apps/scorecerer",
+  "sourceRoot": "apps/scorecerer/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/scorecerer",
+        "index": "apps/scorecerer/src/index.html",
+        "baseHref": "/",
+        "main": "apps/scorecerer/src/main.tsx",
+        "polyfills": "apps/scorecerer/src/polyfills.ts",
+        "tsConfig": "apps/scorecerer/tsconfig.app.json",
+        "assets": [
+          "apps/scorecerer/src/favicon.ico",
+          "apps/scorecerer/src/assets"
+        ],
+        "styles": ["apps/scorecerer/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/scorecerer/src/environments/environment.ts",
+              "with": "apps/scorecerer/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "scorecerer:build",
+        "hmr": true,
+        "proxyConfig": "apps/scorecerer/proxy.conf.json"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "scorecerer:build:development"
+        },
+        "production": {
+          "buildTarget": "scorecerer:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/scorecerer/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/scorecerer"],
+      "options": {
+        "jestConfig": "apps/scorecerer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
