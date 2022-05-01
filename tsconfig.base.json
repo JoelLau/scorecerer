@@ -16,7 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@scorecerer/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@scorecerer/features/scythe/ui": ["libs/features/scythe/ui/src/index.ts"]
+      "@scorecerer/features/scythe/ui": [
+        "libs/features/scythe/ui/src/index.ts"
+      ],
+      "@scorecerer/ui/components": ["libs/ui/components/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
