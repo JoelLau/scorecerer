@@ -26,8 +26,8 @@ export default Typography;
 
 export const TypographyVariantClassMap = {
   h1: 'text-3xl',
-  small: 'text-bold',
-  p: 'text-bold',
+  p: 'text-sm',
+  button: 'text-sm',
 };
 
 export type TypographyVariant = keyof typeof TypographyVariantClassMap;
