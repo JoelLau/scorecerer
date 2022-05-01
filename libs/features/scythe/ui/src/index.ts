@@ -1,1 +1,1 @@
-export * from './lib/scythe-ui';
+export * from './lib/scythe-page';

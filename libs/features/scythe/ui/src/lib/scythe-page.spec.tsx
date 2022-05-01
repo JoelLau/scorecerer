@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import ScytheUi from './scythe-ui';
+import ScythePage from './scythe-page';
 
-describe('ScytheUi', () => {
+describe('ScythePage', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ScytheUi />);
+    const { baseElement } = render(<ScythePage />);
     expect(baseElement).toBeTruthy();
   });
 });
