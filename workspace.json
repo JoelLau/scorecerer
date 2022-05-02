@@ -6,6 +6,8 @@
     "features-scythe-ui": "libs/features/scythe/ui",
     "scorecerer": "apps/scorecerer",
     "scorecerer-e2e": "apps/scorecerer-e2e",
-    "ui-components": "libs/ui/components"
+    "ui-assets": "libs/ui/assets",
+    "ui-components": "libs/ui/components",
+    "ui-layout": "libs/ui/layout"
   }
 }

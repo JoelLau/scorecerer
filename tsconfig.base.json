@@ -19,7 +19,9 @@
       "@scorecerer/features/scythe/ui": [
         "libs/features/scythe/ui/src/index.ts"
       ],
-      "@scorecerer/ui/components": ["libs/ui/components/src/index.ts"]
+      "@scorecerer/ui/assets": ["libs/ui/assets/src/index.ts"],
+      "@scorecerer/ui/components": ["libs/ui/components/src/index.ts"],
+      "@scorecerer/ui/layout": ["libs/ui/layout/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
