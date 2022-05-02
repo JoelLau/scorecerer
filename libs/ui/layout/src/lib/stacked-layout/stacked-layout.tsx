@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import PageFooter from '../../shared/page-footer/page-footer';
 import PageHeader from '../shared/page-header/page-header';
 
 export interface StackedLayoutProps {
@@ -8,10 +7,9 @@ export interface StackedLayoutProps {
 
 export function StackedLayout({ children }: StackedLayoutProps) {
   return (
-    <div className="min-h-screen text-white bg-gray-800 min-w-screen">
+    <div className="min-h-screen px-1 pb-20 bg-overlap xl:px-20 md:px-10">
       <PageHeader />
-      <main>{children}</main>
-      <PageFooter />
+      {children}
     </div>
   );
 }

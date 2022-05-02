@@ -8,6 +8,7 @@
     "scorecerer-e2e": "apps/scorecerer-e2e",
     "ui-assets": "libs/ui/assets",
     "ui-components": "libs/ui/components",
-    "ui-layout": "libs/ui/layout"
+    "ui-layout": "libs/ui/layout",
+    "util": "libs/util"
   }
 }
