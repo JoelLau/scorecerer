@@ -1,3 +1,4 @@
+import { cleanClasses } from '@scorecerer/util';
 import { ReactNode } from 'react';
 
 export interface ButtonProps {
@@ -11,14 +12,10 @@ export function Button(props: ButtonProps) {
 }
 
 const getButtonClasses = (props: ButtonProps): string => {
-  return [
+  return cleanClasses(
     'inline-flex items-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
-    ButtonVariantMapClass[props.variant || 'primary'],
-  ]
-    .join(' ')
-    .split(' ')
-    .map((str) => str.trim())
-    .join(' ');
+    ButtonVariantMapClass[props.variant || 'primary']
+  );
 };
 
 export default Button;

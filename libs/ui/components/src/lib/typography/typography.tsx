@@ -1,3 +1,4 @@
+import { cleanClasses } from '@scorecerer/util';
 import { ReactNode } from 'react';
 
 /*
@@ -11,10 +12,15 @@ import { ReactNode } from 'react';
 export interface TypographyProps {
   variant?: TypographyVariant;
   children?: ReactNode;
+  className?: string;
 }
 
 export function Typography(props: TypographyProps) {
-  const classes = getTypographyClasses(props);
+  const classes = cleanClasses(
+    getTypographyClasses(props),
+    props.className || ''
+  );
+
   return <div className={classes}>{props.children}</div>;
 }
 
@@ -25,10 +31,10 @@ const getTypographyClasses = (props: TypographyProps): string => {
 export default Typography;
 
 export const TypographyVariantClassMap = {
-  h1: 'text-3xl',
+  h1: 'text-3xl font-bold',
   p: 'text-sm',
   button: 'text-sm',
-  'brand-logo': 'text-md font-bold',
+  'brand-logo': 'text-lg font-bold',
 };
 
 export type TypographyVariant = keyof typeof TypographyVariantClassMap;
