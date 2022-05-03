@@ -3,7 +3,12 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "features-scythe-ui": "libs/features/scythe/ui",
     "scorecerer": "apps/scorecerer",
-    "scorecerer-e2e": "apps/scorecerer-e2e"
+    "scorecerer-e2e": "apps/scorecerer-e2e",
+    "ui-assets": "libs/ui/assets",
+    "ui-components": "libs/ui/components",
+    "ui-layout": "libs/ui/layout",
+    "util": "libs/util"
   }
 }
