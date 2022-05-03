@@ -9,11 +9,7 @@ export interface PageContentBodyProps {
 
 export function PageContentBody(props: PageContentBodyProps) {
   return (
-    <div
-      data-testid={TEST_IDS.PAGE_CONTENT_BODY}
-      className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8"
-      {...props}
-    />
+    <div data-testid={TEST_IDS.PAGE_CONTENT_BODY} className="py-6" {...props} />
   );
 }
 

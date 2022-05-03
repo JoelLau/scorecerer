@@ -1,20 +1,28 @@
 import { cleanClasses } from '@scorecerer/util';
-import { ReactNode } from 'react';
+import { BaseSyntheticEvent, ReactNode } from 'react';
 
 export interface ButtonProps {
   children?: ReactNode;
   variant?: ButtonVariant;
+  onClick?: (event: BaseSyntheticEvent) => unknown;
+  width?: 'full';
 }
 
-export function Button(props: ButtonProps) {
-  const classes = getButtonClasses(props);
-  return <button className={classes}>{props.children}</button>;
+export function Button({ variant, ...props }: ButtonProps) {
+  const classes = getButtonClasses({ ...props, variant });
+
+  return (
+    <button className={classes} {...props}>
+      {props.children}
+    </button>
+  );
 }
 
 const getButtonClasses = (props: ButtonProps): string => {
   return cleanClasses(
     'inline-flex items-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
-    ButtonVariantMapClass[props.variant || 'primary']
+    ButtonVariantMapClass[props.variant || 'primary'],
+    props.width ? 'w-full' : ''
   );
 };
 

@@ -17,7 +17,7 @@ export function PageContent({ header, children }: PageContentProps) {
     >
       {header && (
         <PageContentHeader>
-          <Typography variant="h1">{header}</Typography>
+          <Typography tag="h1">{header}</Typography>
         </PageContentHeader>
       )}
       <PageContentBody>{children}</PageContentBody>
