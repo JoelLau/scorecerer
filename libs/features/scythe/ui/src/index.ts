@@ -1,2 +1,3 @@
-export * from './lib/scythe-page';
-export * from './lib/scythe-test';
+export * from './lib/calculator/scythe-calculator-page';
+export * from './lib/calculator';
+export * from './lib/scythe-router';
