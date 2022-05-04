@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { TEST_IDS } from '@scorecerer/util';
+import { cleanClasses, TEST_IDS } from '@scorecerer/util';
 
 /* eslint-disable-next-line */
 export interface PageContentBodyProps {
@@ -7,9 +7,15 @@ export interface PageContentBodyProps {
   className?: string;
 }
 
-export function PageContentBody(props: PageContentBodyProps) {
+export function PageContentBody({ className, ...props }: PageContentBodyProps) {
+  const classes = cleanClasses('py-6', className || '');
+
   return (
-    <div data-testid={TEST_IDS.PAGE_CONTENT_BODY} className="py-6" {...props} />
+    <div
+      data-testid={TEST_IDS.PAGE_CONTENT_BODY}
+      className={classes}
+      {...props}
+    />
   );
 }
 

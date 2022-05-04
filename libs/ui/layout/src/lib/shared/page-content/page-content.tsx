@@ -13,14 +13,18 @@ export function PageContent({ header, children }: PageContentProps) {
   return (
     <main
       data-testid={TEST_IDS.PAGE_CONTENT}
-      className="flex flex-col min-h-screen gap-3 px-4 pt-6 pb-8 bg-white rounded-md shadow sm:px-6 lg:px-8"
+      className="flex flex-col gap-3 px-4 pb-8 mx-auto max-w-7xl sm:px-6 lg:px-8"
     >
       {header && (
         <PageContentHeader>
-          <Typography tag="h1">{header}</Typography>
+          <Typography tag="h1" className="pt-4 pb-8 text-white">
+            {header}
+          </Typography>
         </PageContentHeader>
       )}
-      <PageContentBody>{children}</PageContentBody>
+      <PageContentBody className="min-h-screen px-4 py-8 bg-white rounded">
+        {children}
+      </PageContentBody>
     </main>
   );
 }
