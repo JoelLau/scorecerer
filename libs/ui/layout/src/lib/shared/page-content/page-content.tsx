@@ -1,20 +1,23 @@
 import { Typography } from '@scorecerer/ui/components';
-import { TEST_IDS } from '@scorecerer/util';
+import { cleanClasses, TEST_IDS } from '@scorecerer/util';
 import { ReactNode } from 'react';
 import PageContentBody from './page-content-body';
 import PageContentHeader from './page-content-header';
 
 export interface PageContentProps {
-  header?: string;
   children?: ReactNode;
+  className?: string;
+  header?: string;
 }
 
-export function PageContent({ header, children }: PageContentProps) {
+export function PageContent({ children, className, header }: PageContentProps) {
+  const classes = cleanClasses(
+    'flex flex-col gap-3 pb-8 mx-auto',
+    className || ''
+  );
+
   return (
-    <main
-      data-testid={TEST_IDS.PAGE_CONTENT}
-      className="flex flex-col gap-3 px-4 pb-8 mx-auto max-w-7xl sm:px-6 lg:px-8"
-    >
+    <main data-testid={TEST_IDS.PAGE_CONTENT} className={classes}>
       {header && (
         <PageContentHeader>
           <Typography tag="h1" className="pt-4 pb-8 text-white">
@@ -22,9 +25,7 @@ export function PageContent({ header, children }: PageContentProps) {
           </Typography>
         </PageContentHeader>
       )}
-      <PageContentBody className="min-h-screen px-4 py-8 bg-white rounded">
-        {children}
-      </PageContentBody>
+      <PageContentBody>{children}</PageContentBody>
     </main>
   );
 }

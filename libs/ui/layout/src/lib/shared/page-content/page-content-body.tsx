@@ -8,7 +8,10 @@ export interface PageContentBodyProps {
 }
 
 export function PageContentBody({ className, ...props }: PageContentBodyProps) {
-  const classes = cleanClasses('py-6', className || '');
+  const classes = cleanClasses(
+    'min-h-screen md:min-h-0 p-8 bg-white rounded-lg',
+    className || ''
+  );
 
   return (
     <div

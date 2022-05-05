@@ -1,13 +1,20 @@
+import { cleanClasses } from '@scorecerer/util';
 import { ReactNode } from 'react';
 import PageHeader from '../shared/page-header/page-header';
 
 export interface StackedLayoutProps {
   children?: ReactNode;
+  className?: string;
 }
 
-export function StackedLayout({ children }: StackedLayoutProps) {
+export function StackedLayout({ className, children }: StackedLayoutProps) {
+  const classes = cleanClasses(
+    'min-h-screen px-1 pb-20 bg-overlap xl:px-24 md:px-10',
+    className || ''
+  );
+
   return (
-    <div className="min-h-screen px-1 pb-20 bg-overlap xl:px-20 md:px-10">
+    <div className={classes}>
       <PageHeader />
       {children}
     </div>

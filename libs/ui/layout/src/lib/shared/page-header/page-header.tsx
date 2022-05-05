@@ -5,9 +5,9 @@ export interface PageHeaderProps {}
 
 export function PageHeader(props: PageHeaderProps) {
   return (
-    <header className="bg-gray-800">
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="bg-transparent">
+      <div className="mx-auto">
+        <div className="flex items-center justify-between h-16 px-8">
           <BrandLogoLink></BrandLogoLink>
         </div>
       </div>
