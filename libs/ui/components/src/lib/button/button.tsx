@@ -26,7 +26,6 @@ export const Button = ({ variant, autoFocus, ...props }: ButtonProps) => {
       className={classes}
       {...(autoFocus ? { autoFocus: true } : {})}
       {...props}
-      tabIndex={1}
       ref={buttonElement}
     >
       {props.children}
@@ -36,7 +35,7 @@ export const Button = ({ variant, autoFocus, ...props }: ButtonProps) => {
 
 const getButtonClasses = (props: ButtonProps): string => {
   return cleanClasses(
-    'inline-flex items-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 text-center',
+    'inline-flex flex justify-center items-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
     ButtonVariantMapClass[props.variant || 'primary'],
     props.width ? 'w-full' : ''
   );
