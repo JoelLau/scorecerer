@@ -10,7 +10,7 @@ export function ScytheCalculatorPage(props: ScytheCalculatorPageProps) {
   const navigate = useNavigate();
 
   const onClick = (event: BaseSyntheticEvent) => {
-    navigate('popularity');
+    navigate('faction');
   };
 
   return (
@@ -26,7 +26,9 @@ export function ScytheCalculatorPage(props: ScytheCalculatorPageProps) {
           </div>
           <div className="flex flex-col items-start flex-1 pl-1 gap-y-2">
             <Typography variant="h1">Scythe Calculator</Typography>
-            <Button onClick={onClick}>Get Started</Button>
+            <Button onClick={onClick} autoFocus>
+              Get Started
+            </Button>
           </div>
         </div>
       </PageContent>
