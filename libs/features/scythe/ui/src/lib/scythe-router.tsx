@@ -7,12 +7,9 @@ export interface ScytheRouterProps {}
 export function ScytheRouter(props: ScytheRouterProps) {
   return (
     <Routes>
-      <Route index element={<Navigate to="calculator"></Navigate>}></Route>
-      <Route
-        path="calculator/*"
-        element={<ScytheCalculatorRouter></ScytheCalculatorRouter>}
-      ></Route>
-      <Route path="*" element={<Navigate to="calculator"></Navigate>}></Route>
+      <Route index element={<Navigate to="calculator" />} />
+      <Route path="calculator/*" element={<ScytheCalculatorRouter />} />
+      <Route path="*" element={<Navigate to="calculator" />} />
     </Routes>
   );
 }

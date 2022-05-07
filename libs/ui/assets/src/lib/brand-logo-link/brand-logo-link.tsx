@@ -12,7 +12,7 @@ export function BrandLogoLink(props: BrandLogoLinkProps) {
         to="/"
         className="flex items-center justify-start flex-shrink-0 gap-4 text-white"
       >
-        <HatWizardIcon className="w-6 h-6 fill-white"></HatWizardIcon>
+        <HatWizardIcon className="w-6 h-6 fill-white" />
         <Typography variant="brand-logo" className="mt-1">
           Scorecerer
         </Typography>

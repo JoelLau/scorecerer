@@ -5,9 +5,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 export const App = () => {
   return (
     <Routes>
-      <Route index element={<Navigate to="scythe"></Navigate>}></Route>
-      <Route path="/scythe/*" element={<ScytheRouter></ScytheRouter>}></Route>
-      <Route path="*" element={<Navigate to="scythe"></Navigate>}></Route>
+      <Route index element={<Navigate to="scythe" />} />
+      <Route path="/scythe/*" element={<ScytheRouter />} />
+      <Route path="*" element={<Navigate to="scythe" />} />
     </Routes>
   );
 };

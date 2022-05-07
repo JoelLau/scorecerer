@@ -194,7 +194,7 @@ export function ScytheCalculatorRouter(props: ScytheCalculatorRouterProps) {
           </StackedLayout>
         }
       />
-      <Route path="*" element={<Navigate to=""></Navigate>}></Route>
+      <Route path="*" element={<Navigate to="" />} />
     </Routes>
   );
 }
