@@ -6,7 +6,7 @@ import ScytheCalculatorPage from './scythe-calculator-page';
 /* eslint-disable-next-line */
 export interface ScytheCalculatorRouterProps {}
 
-export function ScytheCalculatorRouter(props: ScytheCalculatorRouterProps) {
+export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
   const navigate = useNavigate();
 
   return (
@@ -197,6 +197,6 @@ export function ScytheCalculatorRouter(props: ScytheCalculatorRouterProps) {
       <Route path="*" element={<Navigate to="" />} />
     </Routes>
   );
-}
+};
 
 export default ScytheCalculatorRouter;

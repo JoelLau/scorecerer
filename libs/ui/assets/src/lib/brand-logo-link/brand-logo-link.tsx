@@ -5,7 +5,7 @@ import HatWizardIcon from '../icons/hat-wizard-icon/hat-wizard-icon';
 /* eslint-disable-next-line */
 export interface BrandLogoLinkProps {}
 
-export function BrandLogoLink(props: BrandLogoLinkProps) {
+export const BrandLogoLink = (props: BrandLogoLinkProps) => {
   return (
     <div className="flex items-center">
       <Link
@@ -19,6 +19,6 @@ export function BrandLogoLink(props: BrandLogoLinkProps) {
       </Link>
     </div>
   );
-}
+};
 
 export default BrandLogoLink;

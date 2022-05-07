@@ -7,7 +7,7 @@ export interface StackedLayoutProps {
   className?: string;
 }
 
-export function StackedLayout({ className, children }: StackedLayoutProps) {
+export const StackedLayout = ({ className, children }: StackedLayoutProps) => {
   const classes = cleanClasses(
     'min-h-screen px-1 pb-20 bg-overlap xl:px-24 md:px-10',
     className || ''
@@ -19,6 +19,6 @@ export function StackedLayout({ className, children }: StackedLayoutProps) {
       {children}
     </div>
   );
-}
+};
 
 export default StackedLayout;

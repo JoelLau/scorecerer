@@ -8,7 +8,7 @@ export interface TypographyProps {
   className?: string;
 }
 
-export function Typography(props: TypographyProps) {
+export const Typography = (props: TypographyProps) => {
   const SementicElement = props.tag || 'div';
 
   const classes = cleanClasses(
@@ -19,7 +19,7 @@ export function Typography(props: TypographyProps) {
   return (
     <SementicElement className={classes}>{props.children}</SementicElement>
   );
-}
+};
 
 export default Typography;
 

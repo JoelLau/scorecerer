@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 /* eslint-disable-next-line */
 export interface ScytheCalculatorPageProps {}
 
-export function ScytheCalculatorPage(props: ScytheCalculatorPageProps) {
+export const ScytheCalculatorPage = (props: ScytheCalculatorPageProps) => {
   const navigate = useNavigate();
 
   const onClick = (event: BaseSyntheticEvent) => {
@@ -34,6 +34,6 @@ export function ScytheCalculatorPage(props: ScytheCalculatorPageProps) {
       </PageContent>
     </StackedLayout>
   );
-}
+};
 
 export default ScytheCalculatorPage;

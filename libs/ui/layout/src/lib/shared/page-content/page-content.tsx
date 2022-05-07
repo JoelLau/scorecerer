@@ -10,7 +10,11 @@ export interface PageContentProps {
   header?: string;
 }
 
-export function PageContent({ children, className, header }: PageContentProps) {
+export const PageContent = ({
+  children,
+  className,
+  header,
+}: PageContentProps) => {
   const classes = cleanClasses(
     'flex flex-col gap-3 pb-8 mx-auto',
     className || ''
@@ -28,6 +32,6 @@ export function PageContent({ children, className, header }: PageContentProps) {
       <PageContentBody>{children}</PageContentBody>
     </main>
   );
-}
+};
 
 export default PageContent;

@@ -4,7 +4,7 @@ import { ScytheCalculatorRouter } from './calculator';
 /* eslint-disable-next-line */
 export interface ScytheRouterProps {}
 
-export function ScytheRouter(props: ScytheRouterProps) {
+export const ScytheRouter = (props: ScytheRouterProps) => {
   return (
     <Routes>
       <Route index element={<Navigate to="calculator" />} />
@@ -12,6 +12,6 @@ export function ScytheRouter(props: ScytheRouterProps) {
       <Route path="*" element={<Navigate to="calculator" />} />
     </Routes>
   );
-}
+};
 
 export default ScytheRouter;

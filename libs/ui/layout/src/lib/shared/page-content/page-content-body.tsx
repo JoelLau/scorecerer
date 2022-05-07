@@ -7,7 +7,10 @@ export interface PageContentBodyProps {
   className?: string;
 }
 
-export function PageContentBody({ className, ...props }: PageContentBodyProps) {
+export const PageContentBody = ({
+  className,
+  ...props
+}: PageContentBodyProps) => {
   const classes = cleanClasses(
     'min-h-screen md:min-h-0 p-8 bg-white rounded-lg',
     className || ''
@@ -20,6 +23,6 @@ export function PageContentBody({ className, ...props }: PageContentBodyProps) {
       {...props}
     />
   );
-}
+};
 
 export default PageContentBody;

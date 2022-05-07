@@ -3,7 +3,7 @@ import { BrandLogoLink } from '@scorecerer/ui/assets';
 /* eslint-disable-next-line */
 export interface PageHeaderProps {}
 
-export function PageHeader(props: PageHeaderProps) {
+export const PageHeader = (props: PageHeaderProps) => {
   return (
     <header className="bg-transparent">
       <div className="mx-auto">
@@ -13,6 +13,6 @@ export function PageHeader(props: PageHeaderProps) {
       </div>
     </header>
   );
-}
+};
 
 export default PageHeader;

@@ -9,7 +9,7 @@ export interface ButtonProps {
   autoFocus?: boolean;
 }
 
-export function Button({ variant, autoFocus, ...props }: ButtonProps) {
+export const Button = ({ variant, autoFocus, ...props }: ButtonProps) => {
   const classes = getButtonClasses({ ...props, variant });
 
   const buttonElement = useRef<any>(null);
@@ -32,7 +32,7 @@ export function Button({ variant, autoFocus, ...props }: ButtonProps) {
       {props.children}
     </button>
   );
-}
+};
 
 const getButtonClasses = (props: ButtonProps): string => {
   return cleanClasses(

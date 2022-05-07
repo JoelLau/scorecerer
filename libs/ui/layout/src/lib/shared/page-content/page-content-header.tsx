@@ -6,10 +6,10 @@ export interface PageContentHeaderProps {
   className?: string;
 }
 
-export function PageContentHeader({
+export const PageContentHeader = ({
   className,
   ...props
-}: PageContentHeaderProps) {
+}: PageContentHeaderProps) => {
   const classes = cleanClasses('grid grid-cols-2 gap-y-1', className || '');
   return (
     <header
@@ -18,6 +18,6 @@ export function PageContentHeader({
       {...props}
     />
   );
-}
+};
 
 export default PageContentHeader;
