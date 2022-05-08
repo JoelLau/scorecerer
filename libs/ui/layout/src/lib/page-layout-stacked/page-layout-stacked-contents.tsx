@@ -10,7 +10,7 @@ export function PageLayoutStackedContents({
   className,
   ...props
 }: PageLayoutStackedContentsProps) {
-  const classes = cleanClasses('min-h-screen min-w-xs border', className || '');
+  const classes = cleanClasses('min-h-screen w-full px-1 sm:max-w-sm', className || '');
 
   return <div className={classes} {...props} />;
 }

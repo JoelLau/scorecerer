@@ -13,7 +13,7 @@ export function PageLayoutStacked({
   ...props
 }: PageLayoutStackedProps) {
   return (
-    <PageLayoutStackedBackground className="flex items-start justify-center">
+    <PageLayoutStackedBackground>
       <PageLayoutStackedContents>
         <PageHeader />
         {className ? <div {...{ className, ...props }}></div> : props.children}

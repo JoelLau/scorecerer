@@ -11,7 +11,7 @@ export function PageLayoutStackedBackground({
   ...props
 }: PageLayoutStackedBackgroundProps) {
   const classes = cleanClasses(
-    'bg-overlap min-h-screen',
+    'bg-overlap min-h-screen flex items-start justify-center',
     className || ''
   );
 
