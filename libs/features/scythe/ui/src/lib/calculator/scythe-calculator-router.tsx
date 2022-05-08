@@ -106,10 +106,7 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
                   </div>
                 </div>
                 <div className="flex flex-col w-full text-center gap-y-2">
-                  <Button width="full" onClick={() => navigate('popularity')}>
-                    Next
-                  </Button>
-                  <Button width="full">Previous</Button>
+                  <Button onClick={() => navigate('popularity')}>Next</Button>
                 </div>
               </form>
             </PageContent>
@@ -144,12 +141,8 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
                   </div>
                 </div>
                 <div className="flex flex-col w-full text-center gap-y-2">
-                  <Button width="full" onClick={() => navigate('stars')}>
-                    Next
-                  </Button>
-                  <Button width="full" onClick={() => navigate('faction')}>
-                    Previous
-                  </Button>
+                  <Button onClick={() => navigate('stars')}>Next</Button>
+                  <Button onClick={() => navigate('faction')}>Previous</Button>
                 </div>
               </form>
             </PageContent>
@@ -184,10 +177,10 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
                   </div>
                 </div>
                 <div className="flex flex-col w-full text-center gap-y-2">
-                  <Button width="full" onClick={() => navigate('complete')}>
-                    Next
+                  <Button onClick={() => navigate('../')}>Complete</Button>
+                  <Button onClick={() => navigate('popularity')}>
+                    Previous
                   </Button>
-                  <Button width="full">Previous</Button>
                 </div>
               </form>
             </PageContent>
