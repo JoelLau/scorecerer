@@ -1,5 +1,5 @@
 import { Button } from '@scorecerer/ui/components';
-import { PageContent, StackedLayout } from '@scorecerer/ui/layout';
+import { PageLayoutStacked } from '@scorecerer/ui/layout';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import ScytheCalculatorPage from './scythe-calculator-page';
 
@@ -15,8 +15,8 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
       <Route
         path="faction"
         element={
-          <StackedLayout>
-            <PageContent className="max-w-sm pt-16">
+          <PageLayoutStacked>
+            <div className="max-w-sm pt-16">
               <form className="flex flex-col items-start w-full justify-evenly gap-y-8">
                 <div className="flex-1">
                   <img
@@ -109,15 +109,15 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
                   <Button onClick={() => navigate('popularity')}>Next</Button>
                 </div>
               </form>
-            </PageContent>
-          </StackedLayout>
+            </div>
+          </PageLayoutStacked>
         }
       />
       <Route
         path="popularity"
         element={
-          <StackedLayout>
-            <PageContent className="max-w-sm pt-16">
+          <PageLayoutStacked>
+            <div className="max-w-sm pt-16">
               <form className="flex flex-col items-start w-full justify-evenly gap-y-8">
                 <div className="flex-1">
                   <img
@@ -145,15 +145,15 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
                   <Button onClick={() => navigate('faction')}>Previous</Button>
                 </div>
               </form>
-            </PageContent>
-          </StackedLayout>
+            </div>
+          </PageLayoutStacked>
         }
       />
       <Route
         path="stars"
         element={
-          <StackedLayout>
-            <PageContent className="max-w-sm pt-16">
+          <PageLayoutStacked>
+            <div className="max-w-sm pt-16">
               <form className="flex flex-col items-start w-full justify-evenly gap-y-8">
                 <div className="flex-1">
                   <img
@@ -183,8 +183,8 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
                   </Button>
                 </div>
               </form>
-            </PageContent>
-          </StackedLayout>
+            </div>
+          </PageLayoutStacked>
         }
       />
       <Route path="*" element={<Navigate to="" />} />

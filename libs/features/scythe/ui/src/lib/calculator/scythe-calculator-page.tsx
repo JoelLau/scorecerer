@@ -1,5 +1,5 @@
 import { Button, Typography } from '@scorecerer/ui/components';
-import { PageContent, StackedLayout } from '@scorecerer/ui/layout';
+import { PageLayoutStacked } from '@scorecerer/ui/layout';
 import { BaseSyntheticEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,8 +14,8 @@ export const ScytheCalculatorPage = (props: ScytheCalculatorPageProps) => {
   };
 
   return (
-    <StackedLayout>
-      <PageContent className="max-w-sm pt-16">
+    <PageLayoutStacked>
+      <div className="max-w-sm pt-16">
         <div className="flex flex-col items-start justify-evenly gap-y-8">
           <div className="flex-1">
             <img
@@ -29,8 +29,8 @@ export const ScytheCalculatorPage = (props: ScytheCalculatorPageProps) => {
             <Button onClick={onClick}>Get Started</Button>
           </div>
         </div>
-      </PageContent>
-    </StackedLayout>
+      </div>
+    </PageLayoutStacked>
   );
 };
 
