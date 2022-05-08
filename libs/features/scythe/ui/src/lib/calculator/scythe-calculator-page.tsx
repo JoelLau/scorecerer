@@ -1,7 +1,7 @@
 import { Button, Card, Typography } from '@scorecerer/ui/components';
 import { PageLayoutStacked } from '@scorecerer/ui/layout';
 import { BaseSyntheticEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface ScytheCalculatorPageProps {}
@@ -15,21 +15,22 @@ export const ScytheCalculatorPage = (props: ScytheCalculatorPageProps) => {
 
   return (
     <PageLayoutStacked>
-      <Card className='mb-10'>
-        <div className="flex flex-col items-start justify-evenly gap-y-8">
-          <div className="flex-1">
-            <img
-              src="../assets/images/scythe-board.png"
-              alt="Scythe Board"
-              className="w-full rounded-lg"
-            />
-          </div>
-          <div className="flex-1 w-full">
-            <Button className="w-full" onClick={onClick}>
-              Get Started
-            </Button>
-          </div>
-        </div>
+      <Typography className="px-6 py-2 text-white">
+        <Link to="/">Home</Link> / <Link to="/scythe">Scythe</Link> / {' '}
+        <Link to="/scythe/calculator">Calculator</Link>
+      </Typography>
+      <Typography tag="h1" className="p-6 pt-0 pb-8 text-white">
+        Scythe Score Calculator
+      </Typography>
+      <Card className="flex flex-col items-start mb-10 justify-evenly gap-y-6">
+        <img
+          src="../assets/images/scythe-board.png"
+          alt="Scythe Board"
+          className="w-full rounded-lg"
+        />
+        <Button className="w-full mt-4" onClick={onClick}>
+          Get Started
+        </Button>
       </Card>
     </PageLayoutStacked>
   );
