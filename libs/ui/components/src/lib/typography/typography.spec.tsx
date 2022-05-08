@@ -10,6 +10,19 @@ describe(`given 'Typography'`, () => {
     expect(baseElement).toBeTruthy();
   });
 
+  describe(`when given classNames`, () => {
+    const testId = 'button-component';
+    const testClass = 'test-class-one test-class-two';
+
+    it(`should apply test classes`, () => {
+      render(<Typography className={testClass} data-testid={testId} />);
+
+      const typography = screen.getByTestId(testId);
+      expect(typography.className).toContain('test-class-one');
+      expect(typography.className).toContain('test-class-two');
+    });
+  });
+
   it.each([
     ['h1', HTMLHeadingElement],
     ['p', HTMLParagraphElement],
@@ -37,8 +50,8 @@ describe(`given 'Typography'`, () => {
     }
   );
 
-  describe('when tag is a valid variant key, and variant is absent', () => {
-    it('then apply tag classes', () => {
+  describe(`when tag is a valid variant key, and variant is absent`, () => {
+    it(`then apply tag classes`, () => {
       const { container } = render(<Typography tag="h1">SOME TEXT</Typography>);
       expect(container.firstChild).toHaveClass(
         ...TypographyVariantClassMap['h1'].split(' ')
@@ -46,8 +59,8 @@ describe(`given 'Typography'`, () => {
     });
   });
 
-  describe('when tag is also a variant, and variant is present', () => {
-    it('then prefer variant classes', () => {
+  describe(`when tag is also a variant, and variant is present`, () => {
+    it(`then prefer variant classes`, () => {
       const { container } = render(
         <Typography tag="h1" variant="button">
           SOME TEXT

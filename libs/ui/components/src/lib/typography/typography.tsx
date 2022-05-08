@@ -4,21 +4,15 @@ import { ReactNode } from 'react';
 export interface TypographyProps {
   tag?: TypographyTag;
   variant?: TypographyVariant;
-  children?: ReactNode;
+  children?: ReactNode | ReactNode[];
   className?: string;
 }
 
-export const Typography = (props: TypographyProps) => {
+export const Typography = ({ className, ...props }: TypographyProps) => {
   const SementicElement = props.tag || 'div';
+  const classes = cleanClasses(getTypographyClasses(props), className || '');
 
-  const classes = cleanClasses(
-    getTypographyClasses(props),
-    props.className || ''
-  );
-
-  return (
-    <SementicElement className={classes}>{props.children}</SementicElement>
-  );
+  return <SementicElement className={classes} {...props} />;
 };
 
 export default Typography;

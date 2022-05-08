@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 export interface PageLayoutStackedBackgroundProps {
   className?: string;
-  children?: ReactNode;
+  children?: ReactNode | ReactNode[];
 }
 
 export function PageLayoutStackedBackground({

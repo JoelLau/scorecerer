@@ -3,8 +3,8 @@ import { MemoryRouter } from 'react-router-dom';
 
 import ScytheCalculatorHomePage from './scythe-calculator-home-page';
 
-describe('ScytheCalculatorHomePage', () => {
-  it('should render successfully', () => {
+describe(`given 'ScytheCalculatorHomePage'`, () => {
+  it(`should render successfully`, () => {
     const { baseElement } = render(<ScytheCalculatorHomePage />, {
       wrapper: MemoryRouter,
     });

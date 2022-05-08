@@ -39,7 +39,7 @@ export interface BaseButtonProps extends UiComponentBaseProps {
 }
 
 export interface UiComponentBaseProps {
-  children?: ReactNode;
+  children?: ReactNode | ReactNode[];
   className?: string;
 }
 
@@ -47,7 +47,6 @@ export const Button = ({ className, ...props }: ButtonProps) => {
   const BaseElement = getButtonBaseElement;
   const classes = getButtonClasses({ className, ...props });
 
-  console.log(classes);
   return <BaseElement className={classes} {...props} />;
 };
 
