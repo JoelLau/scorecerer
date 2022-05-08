@@ -1,3 +1,2 @@
-export * from './lib/shared/page-content/page-content';
+export * from './lib/page-layout-stacked';
 export * from './lib/shared/page-header/page-header';
-export * from './lib/stacked-layout/stacked-layout';

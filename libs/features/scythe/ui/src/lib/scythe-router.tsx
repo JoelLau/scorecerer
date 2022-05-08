@@ -1,17 +1,17 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import ScytheTest from './scythe-test';
+import { ScytheCalculatorRouter } from './calculator';
 
 /* eslint-disable-next-line */
 export interface ScytheRouterProps {}
 
-export function ScytheRouter(props: ScytheRouterProps) {
+export const ScytheRouter = (props: ScytheRouterProps) => {
   return (
     <Routes>
-      <Route index element={<Navigate to="test"></Navigate>}></Route>
-      <Route path="test/*" element={<ScytheTest></ScytheTest>}></Route>
-      <Route path="*" element={<Navigate to="test"></Navigate>}></Route>
+      <Route index element={<Navigate to="calculator" />} />
+      <Route path="calculator/*" element={<ScytheCalculatorRouter />} />
+      <Route path="*" element={<Navigate to="calculator" />} />
     </Routes>
   );
-}
+};
 
 export default ScytheRouter;

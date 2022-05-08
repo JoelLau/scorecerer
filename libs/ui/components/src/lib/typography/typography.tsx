@@ -1,34 +1,39 @@
 import { cleanClasses } from '@scorecerer/util';
 import { ReactNode } from 'react';
 
-/*
- * Philosophy:
- *    - all text in the app should be wrapped with the Typography component
- *    - the Typography component will:
- *        - provide consistent styling throughout the app
- *        - NOT imply sementic element
- *            - e.g. wrap this with <h1> tag if required
- */
 export interface TypographyProps {
+  tag?: TypographyTag;
   variant?: TypographyVariant;
   children?: ReactNode;
   className?: string;
 }
 
-export function Typography(props: TypographyProps) {
+export const Typography = (props: TypographyProps) => {
+  const SementicElement = props.tag || 'div';
+
   const classes = cleanClasses(
     getTypographyClasses(props),
     props.className || ''
   );
 
-  return <div className={classes}>{props.children}</div>;
-}
-
-const getTypographyClasses = (props: TypographyProps): string => {
-  return TypographyVariantClassMap[props.variant || 'p'];
+  return (
+    <SementicElement className={classes}>{props.children}</SementicElement>
+  );
 };
 
 export default Typography;
+
+const getTypographyClasses = ({ tag, variant }: TypographyProps): string => {
+  return (
+    (variant && TypographyVariantClassMap[variant]) ||
+    (tag &&
+      Object.keys(TypographyVariantClassMap).includes(tag) &&
+      TypographyVariantClassMap[
+        tag as keyof typeof TypographyVariantClassMap
+      ]) ||
+    TypographyVariantClassMap['p']
+  );
+};
 
 export const TypographyVariantClassMap = {
   h1: 'text-3xl font-bold',
@@ -36,5 +41,7 @@ export const TypographyVariantClassMap = {
   button: 'text-sm',
   'brand-logo': 'text-lg font-bold',
 };
+
+export type TypographyTag = 'h1' | 'p' | 'div';
 
 export type TypographyVariant = keyof typeof TypographyVariantClassMap;

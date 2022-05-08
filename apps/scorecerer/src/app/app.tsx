@@ -1,17 +1,15 @@
+import { ScytheRouter } from '@scorecerer/features/scythe/ui';
 import React from 'react';
-import AppRouter from './app-router';
-
-export type ScoreComponents = {
-  popularity: number;
-  stars: number;
-  resources: number;
-  territories: number;
-  structureBonus: number;
-  money: number;
-};
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 export const App = () => {
-  return <AppRouter />;
+  return (
+    <Routes>
+      <Route index element={<Navigate to="scythe" />} />
+      <Route path="/scythe/*" element={<ScytheRouter />} />
+      <Route path="*" element={<Navigate to="scythe" />} />
+    </Routes>
+  );
 };
 
 export default App;

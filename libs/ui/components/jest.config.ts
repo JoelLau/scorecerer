@@ -1,6 +1,7 @@
 module.exports = {
   displayName: 'ui-components',
   preset: '../../../jest.preset.ts',
+  setupFilesAfterEnv: ['<rootDir>/src/jest-setup.ts'],
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },

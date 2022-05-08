@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import ScytheTest from './scythe-test';
+import BrandLogoLink from './brand-logo-link';
 
-describe('ScytheTest', () => {
+describe('BrandLogoLink', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ScytheTest />);
+    const { baseElement } = render(<BrandLogoLink />);
     expect(baseElement).toBeTruthy();
   });
 });

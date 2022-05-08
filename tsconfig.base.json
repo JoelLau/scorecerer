@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@scorecerer/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@scorecerer/assets": ["libs/assets/src/index.ts"],
       "@scorecerer/features/scythe/ui": [
         "libs/features/scythe/ui/src/index.ts"
       ],

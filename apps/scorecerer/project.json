@@ -17,7 +17,12 @@
         "tsConfig": "apps/scorecerer/tsconfig.app.json",
         "assets": [
           "apps/scorecerer/src/favicon.ico",
-          "apps/scorecerer/src/assets"
+          "apps/scorecerer/src/assets",
+          {
+            "glob": "images/**/*",
+            "input": "./libs/assets",
+            "output": "./assets"
+          }
         ],
         "styles": ["apps/scorecerer/src/styles.scss"],
         "scripts": [],

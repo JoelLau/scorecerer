@@ -1,7 +1,7 @@
 describe('scorecerer', () => {
   beforeEach(() => cy.visit('/'));
 
-  const home_page = '/scythe/test';
+  const home_page = '/scythe/calculator';
   it(`should start with navigation to ${home_page}`, () => {
     cy.url().should('include', home_page);
   });
