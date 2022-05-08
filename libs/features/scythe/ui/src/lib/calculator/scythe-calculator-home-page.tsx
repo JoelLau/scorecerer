@@ -4,9 +4,9 @@ import { BaseSyntheticEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 /* eslint-disable-next-line */
-export interface ScytheCalculatorPageProps {}
+export interface ScytheCalculatorHomePageProps {}
 
-export const ScytheCalculatorPage = (props: ScytheCalculatorPageProps) => {
+export const ScytheCalculatorHomePage = (props: ScytheCalculatorHomePageProps) => {
   const navigate = useNavigate();
 
   const onClick = (event: BaseSyntheticEvent) => {
@@ -36,4 +36,4 @@ export const ScytheCalculatorPage = (props: ScytheCalculatorPageProps) => {
   );
 };
 
-export default ScytheCalculatorPage;
+export default ScytheCalculatorHomePage;

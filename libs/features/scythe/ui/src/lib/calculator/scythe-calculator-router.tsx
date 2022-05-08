@@ -1,7 +1,7 @@
 import { Button } from '@scorecerer/ui/components';
 import { PageLayoutStacked } from '@scorecerer/ui/layout';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import ScytheCalculatorPage from './scythe-calculator-page';
+import ScytheCalculatorHomePage from './scythe-calculator-home-page';
 
 /* eslint-disable-next-line */
 export interface ScytheCalculatorRouterProps {}
@@ -11,7 +11,7 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
 
   return (
     <Routes>
-      <Route index element={<ScytheCalculatorPage />} />
+      <Route index element={<ScytheCalculatorHomePage />} />
       <Route
         path="faction"
         element={

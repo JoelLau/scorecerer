@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import ScytheCalculatorPage from './scythe-calculator-page';
+import ScytheCalculatorHomePage from './scythe-calculator-home-page';
 
-describe('ScytheCalculatorPage', () => {
+describe('ScytheCalculatorHomePage', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ScytheCalculatorPage />, {
+    const { baseElement } = render(<ScytheCalculatorHomePage />, {
       wrapper: MemoryRouter,
     });
     expect(baseElement).toBeTruthy();
