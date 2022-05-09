@@ -1,11 +1,6 @@
-import {
-  Button,
-  Card,
-  FormControl,
-  Typography,
-} from '@scorecerer/ui/components';
+import { Button, FormControl } from '@scorecerer/ui/components';
 import { PageLayoutStacked } from '@scorecerer/ui/layout';
-import { Link, Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import ScytheCalculatorHomePage from './scythe-calculator-home-page';
 import ScytheCalculatorStep from './scythe-calculator-step';
 

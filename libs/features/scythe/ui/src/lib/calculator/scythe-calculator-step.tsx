@@ -1,4 +1,9 @@
-import { Button, Card, Typography } from '@scorecerer/ui/components';
+import {
+  Button,
+  Card,
+  FormControlButtonRadio,
+  Typography,
+} from '@scorecerer/ui/components';
 import { PageLayoutStacked } from '@scorecerer/ui/layout';
 import { BaseSyntheticEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -23,95 +28,43 @@ export function ScytheCalculatorStep(props: ScytheCalculatorStepProps) {
         Scythe Score Calculator
       </Typography>
       <Card>
-        <img
-          src="../assets/images/scythe-board.png"
-          alt="Scythe Board"
-          className="w-full rounded-lg"
-        />
         <form
-          className="flex flex-col items-start w-full justify-evenly gap-y-2"
+          className="flex flex-col items-start w-full justify-evenly gap-y-5"
           onSubmit={onSubmit}
         >
-          <div className="flex flex-row-reverse items-center justify-start cursor-pointer gap-x-2">
-            <label htmlFor="polania-republic" tabIndex={1}>
-              Polania Republic
-            </label>
-            <input
-              type="radio"
-              name="faction"
+          <div className="flex flex-col w-full gap-y-1">
+            <FormControlButtonRadio
               id="polania-republic"
-              value="Polania Republic"
-              autoFocus
-            />
-          </div>
-          <div className="flex flex-row-reverse items-center justify-start cursor-pointer gap-x-2">
-            <label htmlFor="saxony-empire" tabIndex={2}>
-              Saxony Empire
-            </label>
-            <input
+              value="polania-republic"
+              name="faction"
+              className="w-full"
+            >
+              <img
+                src="../assets/images/polania_emblem.png"
+                alt="Polania Republic"
+                className="w-8 h-8 rounded-lg"
+              />
+              <Typography>Polania Republic</Typography>
+            </FormControlButtonRadio>
+            <FormControlButtonRadio
               type="radio"
               name="faction"
               id="saxony-empire"
               value="Saxony Empire"
-            />
+              className="w-full"
+              checked={false}
+            >
+              <img
+                src="../assets/images/saxony_emblem.png"
+                alt="Saxony Empire"
+                className="w-8 h-8 rounded-lg"
+              />
+              <Typography>Saxony Empire</Typography>
+            </FormControlButtonRadio>
           </div>
-          <div className="flex flex-row-reverse items-center justify-start cursor-pointer gap-x-2">
-            <label htmlFor="crimean-khanate" tabIndex={3}>
-              Crimean Khanate
-            </label>
-            <input
-              type="radio"
-              name="faction"
-              id="crimean-khanate"
-              value="Crimean Khanate"
-            />
-          </div>
-          <div className="flex flex-row-reverse items-center justify-start cursor-pointer gap-x-2">
-            <label htmlFor="nordic-kingdom" tabIndex={4}>
-              Nordic Kingdom
-            </label>
-            <input
-              type="radio"
-              name="faction"
-              id="nordic-kingdom"
-              value="Nordic Kingdom"
-            />
-          </div>
-          <div className="flex flex-row-reverse items-center justify-start cursor-pointer gap-x-2">
-            <label htmlFor="rusviet-union" tabIndex={5}>
-              Rusviet Union
-            </label>
-            <input
-              type="radio"
-              name="faction"
-              id="rusviet-union"
-              value="Rusviet Union"
-            />
-          </div>
-          <div className="flex flex-row-reverse items-center justify-start cursor-pointer gap-x-2">
-            <label htmlFor="clan-albion" tabIndex={6}>
-              Clan Albion
-            </label>
-            <input
-              type="radio"
-              name="faction"
-              id="clan-albion"
-              value="Clan Albion"
-            />
-          </div>
-          <div className="flex flex-row-reverse items-center justify-start cursor-pointer gap-x-2">
-            <label htmlFor="togawa-shogunate" tabIndex={7}>
-              Togawa Shogunate
-            </label>
-            <input
-              type="radio"
-              name="faction"
-              id="togawa-shogunate"
-              value="Togawa Shogunate"
-            />
-          </div>
-          <Button type="submit-button" className="w-full mt-4">
-            Next
+          <Button type="submit-button" className="flex w-full flex-start">
+            <Typography>Next</Typography>
+            <kbd className="px-2.5 py-1 bg-gray-200 rounded-lg mx-2">Enter</kbd>
           </Button>
         </form>
       </Card>
