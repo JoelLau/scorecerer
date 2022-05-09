@@ -1,20 +1,32 @@
-import { HTMLProps } from 'react';
+import { ReactChild } from 'react';
+import FormControlButtonRadio from './form-control-button-radio';
+import FormControlNumber, {
+  FormControlNumberProps,
+} from './form-control-number';
 
 /* eslint-disable-next-line */
-export interface FormControlProps extends HTMLProps<HTMLInputElement> {}
+export type FormControlProps =
+  | (FormControlNumberProps & {
+      variant: 'number';
+    })
+  | (FormControlNumberProps & {
+      variant: 'button-radio';
+    })
+  | (React.HTMLProps<HTMLInputElement> & {
+      variant?: 'text';
+      children?: ReactChild;
+    });
 
-export function FormControl({ className, ...props }: FormControlProps) {
-  return (
-    <input
-      className={
-        'block w-full px-3 py-1.5 text-base font-normal text-gray-700 ' +
-          'bg-white bg-clip-padding border border-solid border-gray-300 ' +
-          'rounded transition ease-in-out m-0 ' +
-          className || ' '
-      }
-      {...props}
-    />
-  );
+export function FormControl({ variant, ...props }: FormControlProps) {
+  switch (variant) {
+    case 'button-radio':
+      return <FormControlButtonRadio {...(props as FormControlNumberProps)} />;
+    case 'number':
+      return <FormControlNumber {...(props as FormControlNumberProps)} />;
+    case 'text':
+    default:
+      return <input type="text" data-testid="form-control-others" {...props} />;
+  }
 }
 
 export default FormControl;

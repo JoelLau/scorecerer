@@ -29,7 +29,7 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
               <div className="flex flex-col items-start flex-1 w-full pl-1 gap-y-2">
                 <div className="flex flex-row items-center justify-start w-full cursor-pointer gap-x-2">
                   <FormControl
-                    type="text"
+                    variant="number"
                     name="popularity"
                     id="popularity"
                     min={0}

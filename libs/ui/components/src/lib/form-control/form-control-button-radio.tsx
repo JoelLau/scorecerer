@@ -33,7 +33,14 @@ export function FormControlButtonRadio({
       htmlFor={id}
       data-testid="button-radio-label"
     >
-      <input type="radio" id={id} name={name} checked={checked} {...props} />
+      <input
+        type="radio"
+        id={id}
+        name={name}
+        checked={checked}
+        data-testid="form-control-button-radio"
+        {...props}
+      />
       {children}
     </label>
   );
