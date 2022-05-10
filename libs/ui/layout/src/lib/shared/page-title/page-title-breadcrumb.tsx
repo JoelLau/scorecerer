@@ -20,7 +20,7 @@ export function PageTitleBreadcrumb({ pieces, className }: PageTitleBreadcrumbPr
   }
 
   const listItemClasses = 'flex items-center justify-center breadcrumb-item ';
-  const linkItemSeparatorClasses = ' before:content-["/"] before:text-white '
+  const linkItemSeparatorClasses = ' before:content-["/"] before:text-inherit '
 
   return (
     <nav className={classes}>

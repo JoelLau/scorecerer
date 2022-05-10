@@ -1,5 +1,4 @@
 import { BaseSyntheticEvent, ReactNode } from 'react';
-import { getButtonClasses } from '../button/button';
 
 export interface FormControlButtonRadioProps {
   className?: string;

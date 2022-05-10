@@ -31,6 +31,7 @@ const getTypographyClasses = ({ tag, variant }: TypographyProps): string => {
 
 export const TypographyVariantClassMap = {
   h1: 'text-3xl font-bold',
+  h2: 'text-2xl font-bold',
   p: 'text-sm',
   button: 'text-sm',
   'brand-logo': 'text-lg font-bold',
@@ -38,6 +39,6 @@ export const TypographyVariantClassMap = {
   link: 'text-sm hover:underline '
 };
 
-export type TypographyTag = 'h1' | 'p' | 'div' | 'kbd';
+export type TypographyTag = 'h1' | 'h2' | 'p' | 'div' | 'kbd';
 
 export type TypographyVariant = keyof typeof TypographyVariantClassMap;
