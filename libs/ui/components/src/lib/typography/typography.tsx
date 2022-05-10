@@ -34,7 +34,8 @@ export const TypographyVariantClassMap = {
   p: 'text-sm',
   button: 'text-sm',
   'brand-logo': 'text-lg font-bold',
-  kbd: 'px-2.5 py-1 bg-gray-200 rounded-lg mx-2'
+  kbd: 'px-2.5 py-1 bg-gray-200 rounded-lg mx-2',
+  link: 'text-sm hover:underline '
 };
 
 export type TypographyTag = 'h1' | 'p' | 'div' | 'kbd';

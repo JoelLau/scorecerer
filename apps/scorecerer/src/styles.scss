@@ -9,3 +9,10 @@
     theme('colors.gray.100') 22em
   );
 }
+
+.breadcrumb-item + .breadcrumb-item:before {
+  // content: '/';
+  color: white;
+  display: inline;
+  margin: 0.25rem;
+}

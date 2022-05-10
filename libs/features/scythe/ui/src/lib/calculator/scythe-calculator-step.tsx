@@ -2,11 +2,11 @@ import {
   Button,
   Card,
   FormControlButtonRadio,
-  Typography,
+  Typography
 } from '@scorecerer/ui/components';
-import { PageLayoutStacked } from '@scorecerer/ui/layout';
+import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
 import { BaseSyntheticEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface ScytheCalculatorStepProps { }
@@ -20,13 +20,20 @@ export function ScytheCalculatorStep(props: ScytheCalculatorStepProps) {
 
   return (
     <PageLayoutStacked>
-      <Typography className="px-6 py-2 text-white">
-        <Link to="/">Home</Link> / <Link to="/scythe">Scythe</Link> /{' '}
-        <Link to="/scythe/calculator">Calculator</Link>
-      </Typography>
-      <Typography tag="h1" className="p-6 pt-0 pb-8 text-white">
+      <PageTitle breadcrumbPieces={[{
+        children: 'Home',
+        to: '/'
+      },
+      {
+        children: 'Scythe',
+        to: '/scythe'
+      },
+      {
+        children: 'Calculator',
+        to: '../calculator'
+      }]}>
         Scythe Score Calculator
-      </Typography>
+      </PageTitle>
       <Card>
         <form
           className="flex flex-col items-start w-full pt-3 justify-evenly gap-y-10"
