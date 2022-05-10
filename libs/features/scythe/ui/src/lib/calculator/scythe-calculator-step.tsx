@@ -1,7 +1,6 @@
 import {
   Button,
-  Card,
-  FormControlButtonRadio,
+  Card, FormControlButtonRadioGroup,
   Typography
 } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
@@ -18,20 +17,47 @@ export function ScytheCalculatorStep(props: ScytheCalculatorStepProps) {
     navigate('../stars');
   };
 
+  const breadCrumbPieces = [{
+    children: 'Home',
+    to: '/'
+  },
+  {
+    children: 'Scythe',
+    to: '/scythe'
+  },
+  {
+    children: 'Calculator',
+    to: '../calculator'
+  }];
+
+  const radioGroupOptions = [{
+    id: "polania-republic",
+    value: "polania-republic",
+    name: "faction",
+    className: "w-full",
+    children: [<img
+      src="../assets/images/polania_emblem.png"
+      alt="Polania Republic"
+      className="w-8 h-8 rounded-lg"
+    />,
+    <Typography>Polania Republic</Typography>]
+  },
+  {
+    id: "saxony-empire",
+    value: "saxony-empire",
+    name: "faction",
+    className: "w-full",
+    children: [<img
+      src="../assets/images/saxony_emblem.png"
+      alt="Saxony Empire"
+      className="w-8 h-8 rounded-lg"
+    />,
+    <Typography>Saxony Empire</Typography>]
+  }];
+
   return (
     <PageLayoutStacked>
-      <PageTitle breadcrumbPieces={[{
-        children: 'Home',
-        to: '/'
-      },
-      {
-        children: 'Scythe',
-        to: '/scythe'
-      },
-      {
-        children: 'Calculator',
-        to: '../calculator'
-      }]}>
+      <PageTitle breadcrumbPieces={breadCrumbPieces}>
         Scythe Score Calculator
       </PageTitle>
       <Card>
@@ -40,34 +66,7 @@ export function ScytheCalculatorStep(props: ScytheCalculatorStepProps) {
           onSubmit={onSubmit}
         >
           <div className="flex flex-col w-full gap-y-1">
-            <FormControlButtonRadio
-              id="polania-republic"
-              value="polania-republic"
-              name="faction"
-              className="w-full"
-            >
-              <img
-                src="../assets/images/polania_emblem.png"
-                alt="Polania Republic"
-                className="w-8 h-8 rounded-lg"
-              />
-              <Typography>Polania Republic</Typography>
-            </FormControlButtonRadio>
-            <FormControlButtonRadio
-              type="radio"
-              name="faction"
-              id="saxony-empire"
-              value="Saxony Empire"
-              className="w-full"
-              checked={false}
-            >
-              <img
-                src="../assets/images/saxony_emblem.png"
-                alt="Saxony Empire"
-                className="w-8 h-8 rounded-lg"
-              />
-              <Typography>Saxony Empire</Typography>
-            </FormControlButtonRadio>
+            <FormControlButtonRadioGroup options={radioGroupOptions} />
           </div>
           <div className="flex flex-col w-full gap-y-2">
             <Button type="submit-button" variant='cta' className="flex w-full flex-start">

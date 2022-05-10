@@ -26,11 +26,11 @@ export function PageTitleBreadcrumb({ pieces, className }: PageTitleBreadcrumbPr
     <nav className={classes}>
       {(pieces || []).map(({ children, ...linkProps }, index) =>
         <li
+          key={`breadcrumb-key-${index}`}
           className={
             listItemClasses +
             (index > 0 ? linkItemSeparatorClasses : '')
           }
-          key={`breadcrumb-key-${index}`}
         >
           <Link {...linkProps}>
             {typeof children === 'string' ? <Typography variant='link' children={children} /> : children}

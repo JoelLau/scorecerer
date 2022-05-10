@@ -18,10 +18,17 @@ export function FormControlButtonRadio({
   id: rawId,
   children,
   checked,
+  onChange,
   ...props
 }: FormControlButtonRadioProps) {
   const name = rawName || rawId;
   const id = rawId || rawName;
+
+  const onChangeHandler = (event: BaseSyntheticEvent) => {
+    if (onChange) {
+      onChange(event)
+    };
+  }
 
   return (
     <label
@@ -37,8 +44,9 @@ export function FormControlButtonRadio({
         type="radio"
         id={id}
         name={name}
-        checked={checked}
+        checked={!!checked}
         data-testid="form-control-button-radio"
+        onChange={onChangeHandler}
         {...props}
       />
       {children}
