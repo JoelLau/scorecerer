@@ -26,7 +26,7 @@ export function FormControlButtonRadio({
   return (
     <label
       className={[
-        'base-button-radio flex flex-row justify-start items-center p-4 gap-x-2 relative text-center rounded-lg border shadow-md border-gray-300',
+        'base-button-radio flex flex-row justify-start items-center p-4 gap-x-2 relative text-center rounded-lg border shadow-sm border-gray-300',
         checked ? 'bg-green-200' : '',
         className || '',
       ].join(' ')}

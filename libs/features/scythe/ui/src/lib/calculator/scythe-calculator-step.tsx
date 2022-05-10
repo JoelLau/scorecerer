@@ -29,7 +29,7 @@ export function ScytheCalculatorStep(props: ScytheCalculatorStepProps) {
       </Typography>
       <Card>
         <form
-          className="flex flex-col items-start w-full justify-evenly gap-y-5"
+          className="flex flex-col items-start w-full pt-3 justify-evenly gap-y-10"
           onSubmit={onSubmit}
         >
           <div className="flex flex-col w-full gap-y-1">
@@ -62,10 +62,14 @@ export function ScytheCalculatorStep(props: ScytheCalculatorStepProps) {
               <Typography>Saxony Empire</Typography>
             </FormControlButtonRadio>
           </div>
-          <Button type="submit-button" className="flex w-full flex-start">
-            <Typography variant='button'>Next</Typography>
-            <Typography tag='kbd'>Enter</Typography>
-          </Button>
+          <div className="flex flex-col w-full gap-y-2">
+            <Button type="submit-button" variant='cta' className="flex w-full flex-start">
+              <Typography variant='button'>Next</Typography>
+            </Button>
+            <Button type="submit-button" className="flex w-full flex-start">
+              <Typography variant='button'>Previous</Typography>
+            </Button>
+          </div>
         </form>
       </Card>
     </PageLayoutStacked>
