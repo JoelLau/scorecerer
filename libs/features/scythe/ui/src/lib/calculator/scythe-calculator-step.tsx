@@ -9,7 +9,7 @@ import { BaseSyntheticEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 /* eslint-disable-next-line */
-export interface ScytheCalculatorStepProps {}
+export interface ScytheCalculatorStepProps { }
 
 export function ScytheCalculatorStep(props: ScytheCalculatorStepProps) {
   const navigate = useNavigate();
@@ -63,8 +63,8 @@ export function ScytheCalculatorStep(props: ScytheCalculatorStepProps) {
             </FormControlButtonRadio>
           </div>
           <Button type="submit-button" className="flex w-full flex-start">
-            <Typography>Next</Typography>
-            <kbd className="px-2.5 py-1 bg-gray-200 rounded-lg mx-2">Enter</kbd>
+            <Typography variant='button'>Next</Typography>
+            <Typography tag='kbd'>Enter</Typography>
           </Button>
         </form>
       </Card>
