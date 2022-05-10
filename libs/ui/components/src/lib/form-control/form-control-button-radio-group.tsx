@@ -1,5 +1,5 @@
 import { cleanClasses } from "@scorecerer/util";
-import { BaseSyntheticEvent, useState } from "react";
+import React, { BaseSyntheticEvent, Fragment, useState } from "react";
 import FormControlButtonRadio, { FormControlButtonRadioProps } from "./form-control-button-radio";
 
 export interface FormControlButtonRadioGroupProps {
@@ -24,21 +24,18 @@ export function FormControlButtonRadioGroup(
   const classes = cleanClasses('flex flex-col w-full gap-y-1', className || '');
 
   return (
-    <div className={classes} {...props}>
+    <div className={classes}>
       {options.map(
-        ({ children, ...option }, index) => {
-          console.log(value);
-          console.log(option.value);
-          return <div key={`form-control-button-radio-group-${index}`}>
+        (option, index) =>
+          <Fragment
+            key={index}
+          >
             <FormControlButtonRadio
               onChange={onButtonRadioChange}
               checked={(!!value && value === option.value)}
               {...option}
-            >
-              {children}
-            </FormControlButtonRadio>
-          </div>;
-        }
+            />
+          </Fragment>
       )
       }
     </div >

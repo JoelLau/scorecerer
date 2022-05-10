@@ -1,4 +1,5 @@
 import { BaseSyntheticEvent, ReactNode } from 'react';
+import { getButtonClasses } from '../button/button';
 
 export interface FormControlButtonRadioProps {
   className?: string;
@@ -33,8 +34,8 @@ export function FormControlButtonRadio({
   return (
     <label
       className={[
-        'base-button-radio flex flex-row justify-start items-center p-4 gap-x-2 relative text-center rounded-lg border shadow-sm border-gray-300',
-        checked ? 'bg-green-200' : '',
+        'base-button-radio flex flex-row justify-start items-center p-4 gap-x-2 relative text-center rounded-lg border shadow-sm border-gray-300 hover:bg-gray-200 cursor-pointer',
+        checked ? 'bg-green-200 border-green-500 hover:bg-green-400 ' : '',
         className || '',
       ].join(' ')}
       htmlFor={id}

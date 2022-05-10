@@ -26,7 +26,7 @@ export function PageTitleBreadcrumb({ pieces, className }: PageTitleBreadcrumbPr
     <nav className={classes}>
       {(pieces || []).map(({ children, ...linkProps }, index) =>
         <li
-          key={`breadcrumb-key-${index}`}
+          key={`page-title-breadcrumb-key-${index}`}
           className={
             listItemClasses +
             (index > 0 ? linkItemSeparatorClasses : '')
