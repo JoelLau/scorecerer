@@ -1,15 +1,18 @@
-import { Typography } from "@scorecerer/ui/components";
-import { cleanClasses } from "@scorecerer/util";
-import { ReactChild } from "react";
-import { Link } from "react-router-dom";
+import { Typography } from '@scorecerer/ui/components';
+import { cleanClasses } from '@scorecerer/util';
+import { ReactChild } from 'react';
+import { Link } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface PageTitleBreadcrumbProps {
-  pieces?: BreadCrumbPiece[]
+  pieces?: BreadCrumbPiece[];
   className?: string;
 }
 
-export function PageTitleBreadcrumb({ pieces, className }: PageTitleBreadcrumbProps) {
+export function PageTitleBreadcrumb({
+  pieces,
+  className,
+}: PageTitleBreadcrumbProps) {
   const classes = cleanClasses(
     'flex list-none w-full text-sm',
     className || ''
@@ -20,26 +23,34 @@ export function PageTitleBreadcrumb({ pieces, className }: PageTitleBreadcrumbPr
   }
 
   const listItemClasses = 'flex items-center justify-center breadcrumb-item ';
-  const linkItemSeparatorClasses = ' before:content-["/"] before:text-inherit '
+  const linkItemSeparatorClasses = ' before:content-["/"] before:text-inherit ';
 
   return (
     <nav className={classes}>
-      {(pieces || []).map(({ children, ...linkProps }, index) =>
+      {(pieces || []).map(({ children, ...linkProps }, index) => (
         <li
-          key={`page-title-breadcrumb-key-${index}`}
+          key={`${index}`}
           className={
-            listItemClasses +
-            (index > 0 ? linkItemSeparatorClasses : '')
+            listItemClasses + (index > 0 ? linkItemSeparatorClasses : '')
           }
         >
           <Link {...linkProps}>
-            {typeof children === 'string' ? <Typography variant='link' children={children} /> : children}
+            {typeof children === 'string' ? (
+              <Typography variant="link" children={children} />
+            ) : (
+              children
+            )}
           </Link>
-        </li>)}
+        </li>
+      ))}
     </nav>
-  )
+  );
 }
 
-export interface BreadCrumbPiece { children: ReactChild, to: string, target?: string };
+export interface BreadCrumbPiece {
+  children: ReactChild;
+  to: string;
+  target?: string;
+}
 
 export default PageTitleBreadcrumb;

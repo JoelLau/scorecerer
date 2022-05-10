@@ -26,14 +26,14 @@ export function FormControlButtonRadio({
 
   const onChangeHandler = (event: BaseSyntheticEvent) => {
     if (onChange) {
-      onChange(event)
-    };
-  }
+      onChange(event);
+    }
+  };
 
   return (
     <label
       className={[
-        'base-button-radio flex flex-row justify-start items-center p-4 gap-x-2 relative text-center rounded-lg border shadow-sm border-gray-300 hover:bg-gray-200 cursor-pointer',
+        'base-button-radio flex flex-row justify-start items-center p-4 gap-x-2 relative text-center rounded-lg border shadow-sm border-gray-300 hover:bg-gray-200 cursor-pointer text-gray-800 font-medium',
         checked ? 'bg-green-200 border-green-500 hover:bg-green-400 ' : '',
         className || '',
       ].join(' ')}

@@ -1,26 +1,45 @@
-import { ReactChild } from 'react';
-import FormControlButtonRadio from './form-control-button-radio';
+import { ReactElement } from 'react';
+import FormControlButtonRadio, {
+  FormControlButtonRadioProps,
+} from './form-control-button-radio';
+import FormControlButtonRadioGroup, {
+  FormControlButtonRadioGroupProps,
+} from './form-control-button-radio-group';
 import FormControlNumber, {
   FormControlNumberProps,
 } from './form-control-number';
 
-/* eslint-disable-next-line */
+export interface FormControlBaseProps {
+  className?: string;
+  children?: ReactElement | null;
+  validator?: (value: any) => string[];
+}
+
 export type FormControlProps =
   | (FormControlNumberProps & {
       variant: 'number';
     })
-  | (FormControlNumberProps & {
+  | (FormControlButtonRadioProps & {
       variant: 'button-radio';
     })
-  | (React.HTMLProps<HTMLInputElement> & {
-      variant?: 'text';
-      children?: ReactChild;
-    });
+  | (FormControlButtonRadioGroupProps & {
+      variant: 'button-radio-group';
+    })
+  | (React.HTMLProps<HTMLInputElement> &
+      FormControlBaseProps & {
+        variant?: 'text';
+      });
 
 export function FormControl({ variant, ...props }: FormControlProps) {
   switch (variant) {
     case 'button-radio':
       return <FormControlButtonRadio {...(props as FormControlNumberProps)} />;
+    case 'button-radio-group':
+      return (
+        <FormControlButtonRadioGroup
+          {...(props as FormControlButtonRadioGroupProps)}
+        />
+      );
     case 'number':
       return <FormControlNumber {...(props as FormControlNumberProps)} />;
     case 'text':

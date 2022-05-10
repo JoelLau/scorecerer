@@ -1,5 +1,6 @@
-/* eslint-disable-next-line */
-export interface FormControlNumberProps {
+import { FormControlBaseProps } from './form-control';
+
+export interface FormControlNumberProps extends FormControlBaseProps {
   min?: number;
   max?: number;
   id?: string;
