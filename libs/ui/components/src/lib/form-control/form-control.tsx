@@ -13,6 +13,7 @@ export interface FormControlBaseProps {
   className?: string;
   children?: ReactElement | null;
   validator?: (value: any) => string[];
+  value?: any;
 }
 
 export type FormControlProps =
@@ -44,7 +45,14 @@ export function FormControl({ variant, ...props }: FormControlProps) {
       return <FormControlNumber {...(props as FormControlNumberProps)} />;
     case 'text':
     default:
-      return <input type="text" data-testid="form-control-others" {...props} />;
+      return (
+        <input
+          type="text"
+          data-testid="form-control-others"
+          {...props}
+          value={props.value as string}
+        />
+      );
   }
 }
 

@@ -11,8 +11,10 @@ export interface ScytheCalculatorStepProps {
   formControl?: FormControlProps;
   className?: string;
   onSubmit?: (event: BaseSyntheticEvent) => unknown;
+  onChange?: (event: BaseSyntheticEvent) => unknown;
   currentIndex?: number;
   steps?: typeof scytheCalculatorSteps;
+  value?: any;
 }
 
 export function ScytheCalculatorStep({
@@ -20,12 +22,20 @@ export function ScytheCalculatorStep({
   className,
   formControl,
   onSubmit,
+  onChange,
   currentIndex,
   steps,
+  value,
 }: ScytheCalculatorStepProps) {
   const onFormSubmitHandler = (event: BaseSyntheticEvent) => {
     if (onSubmit) {
       onSubmit(event);
+    }
+  };
+
+  const onChangeHandler = (event: BaseSyntheticEvent) => {
+    if (onChange) {
+      onChange(event);
     }
   };
 
@@ -55,6 +65,8 @@ export function ScytheCalculatorStep({
                 <div className="flex flex-col w-full gap-y-1">
                   <FormControl
                     {...formControl}
+                    value={value}
+                    onChange={onChangeHandler}
                     {
                       /** set autofocus wherever possible */
                       ...(formControl.variant === 'number' ||

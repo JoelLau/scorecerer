@@ -58,23 +58,33 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
           key={id}
           path={id}
           element={
-            <ScytheCalculatorStep
-              currentIndex={index}
-              steps={arr}
-              onSubmit={(event: BaseSyntheticEvent) => {
-                event.preventDefault();
+            <div className="flex flex-row items-start">
+              <ScytheCalculatorStep
+                currentIndex={index}
+                steps={arr}
+                value={score[stepIdtoScorePiecesKeyMap[id]]}
+                onSubmit={(event: BaseSyntheticEvent) => {
+                  event.preventDefault();
 
-                updateScorePiece(
-                  stepIdtoScorePiecesKeyMap[id],
-                  event.target[0].value
-                );
+                  updateScorePiece(
+                    stepIdtoScorePiecesKeyMap[id],
+                    event.target[0].value
+                  );
 
-                navigate(
-                  index === arr.length - 1 ? 'score' : steps[index + 1].id
-                );
-              }}
-              {...stepProps}
-            />
+                  navigate(
+                    index === arr.length - 1 ? 'score' : steps[index + 1].id
+                  );
+                }}
+                onChange={(event: BaseSyntheticEvent) => {
+                  updateScorePiece(
+                    stepIdtoScorePiecesKeyMap[id],
+                    event.target.value
+                  );
+                }}
+                {...stepProps}
+              />
+              <pre>{JSON.stringify(score, null, 2)}</pre>
+            </div>
           }
         />
       ))}
