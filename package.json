@@ -2,6 +2,7 @@
   "name": "scorecerer",
   "version": "0.0.2",
   "license": "MIT",
+  "homepage": "",
   "scripts": {
     "start": "nx run-many --target=serve --all --parallel",
     "build": "nx run-many --all --target=build --parallel",
