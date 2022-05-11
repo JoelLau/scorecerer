@@ -1,43 +1,38 @@
-import React, { BaseSyntheticEvent } from 'react';
+import React, { BaseSyntheticEvent, useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import ScytheCalculatorStep from './scythe-calculator-step';
+import ScytheCalculatorStepHome from './scythe-calculator-step-home';
+import ScytheCalculatorStepScore, {
+  ScytheScorePieces,
+} from './scythe-calculator-step-score';
 import { scytheCalculatorSteps } from './scythe-calculator-steps';
 
 /* eslint-disable-next-line */
 export interface ScytheCalculatorRouterProps {}
 
-const steps = scytheCalculatorSteps;
-
 export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
   const navigate = useNavigate();
 
-  const calculatorHome = (
-    <ScytheCalculatorStep
-      onSubmit={(event: BaseSyntheticEvent) => navigate(steps[0].id)}
-    >
-      <img
-        src="../assets/images/scythe-board.png"
-        alt="Scythe Board"
-        className="w-full rounded-lg"
-      />
-    </ScytheCalculatorStep>
-  );
+  const steps = scytheCalculatorSteps;
+  const firstStepUrl = steps[0].id;
 
-  const calculatorFinal = (
-    <ScytheCalculatorStep
-      onSubmit={(event: BaseSyntheticEvent) => navigate(steps[0].id)}
-    >
-      <img
-        src="../assets/images/scythe-board.png"
-        alt="Scythe Board"
-        className="w-full rounded-lg"
-      />
-    </ScytheCalculatorStep>
-  );
+  const [score, setScore] = useState<ScytheScorePieces>({
+    playerCount: 0,
+    faction: '',
+    popularity: 0,
+    stars: 0,
+    territories: 0,
+    resources: 0,
+    structureBonus: 0,
+    encounterTerritories: 0,
+  });
 
   return (
     <Routes>
-      <Route index element={calculatorHome} />
+      <Route
+        index
+        element={<ScytheCalculatorStepHome firstStepUrl={firstStepUrl} />}
+      />
       {steps.map(({ id, ...stepProps }, index, arr) => (
         <Route
           key={id}
@@ -56,7 +51,15 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
           }
         />
       ))}
-      <Route path="score" element={calculatorFinal} />
+      <Route
+        path="score"
+        element={
+          <ScytheCalculatorStepScore
+            firstStepUrl={firstStepUrl}
+            scorePieces={score}
+          />
+        }
+      />
       <Route path="*" element={<Navigate to="" />} />
     </Routes>
   );
