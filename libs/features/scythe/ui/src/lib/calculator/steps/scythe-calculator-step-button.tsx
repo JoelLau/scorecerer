@@ -46,7 +46,7 @@ export function ScytheCalculatorStepButton({
     case 'reset':
       return (
         <Button
-          type="simple-button"
+          type="submit-button"
           variant="cta"
           className="flex w-full flex-start"
           {...props}
