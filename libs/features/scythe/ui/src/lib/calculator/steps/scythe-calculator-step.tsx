@@ -34,10 +34,15 @@ export function ScytheCalculatorStep({
   value,
   validator,
 }: ScytheCalculatorStepProps) {
-  const [hasSubmitAttempt, setHasSubmitAttempt] = useState(false);
+  const [, setHasSubmitAttempt] = useState(false);
+  const [showErrorMessages, setShowErrorMessages] = useState(false);
 
   const onFormSubmitHandler = (event: BaseSyntheticEvent) => {
+    // manually override for easier access on parent component
+    event.target.value = value;
+
     setHasSubmitAttempt(true);
+    setShowErrorMessages(true);
 
     if (onSubmit) {
       onSubmit(event);
@@ -45,6 +50,10 @@ export function ScytheCalculatorStep({
   };
 
   const onChangeHandler = (event: BaseSyntheticEvent) => {
+    if (!errors || errors.length <= 0) {
+      setShowErrorMessages(true);
+    }
+
     if (onChange) {
       onChange(event);
     }
@@ -53,6 +62,14 @@ export function ScytheCalculatorStep({
   const nextStep = (steps || [])[(currentIndex || 0) + 1];
   const previousStep = (steps || [])[(currentIndex || 0) - 1];
   const isLastStep = !!steps && (steps || []).length - 1 === currentIndex;
+
+  const showGettingStarted = !nextStep && !previousStep;
+  const showNextStep = nextStep;
+  const showPreviousStep = !isLastStep && previousStep;
+  const showLastStep = isLastStep;
+
+  const showButtonContainer =
+    showGettingStarted || showNextStep || showPreviousStep || showLastStep;
 
   const navigate = useNavigate();
 
@@ -80,54 +97,56 @@ export function ScytheCalculatorStep({
           {
             <>
               {children}
-              <div className="flex flex-col w-full gap-y-3">
-                {formControl && (
-                  <>
-                    <FormControl
-                      {...formControl}
-                      value={value}
-                      onChange={onChangeHandler}
-                      {
-                        /** set autofocus wherever possible */
-                        ...(formControl.variant === 'number' ||
-                        formControl.variant === 'text'
-                          ? { autoFocus: true }
-                          : {})
-                      }
-                    />
-                    {hasSubmitAttempt &&
-                      errors &&
-                      errors.map((errorText, index) => (
-                        <Typography
-                          key={index}
-                          variant="error"
-                          className="pl-2 pr-4"
-                        >
-                          {errorText}
-                        </Typography>
-                      ))}
-                  </>
-                )}
-              </div>
-              <div className="flex flex-col w-full gap-y-2">
-                {
-                  <>
-                    {!nextStep && !previousStep && (
-                      <ScytheCalculatorStepButton variant="getting-started" />
-                    )}
-                    {nextStep && <ScytheCalculatorStepButton variant="next" />}
-                    {!isLastStep && previousStep && (
-                      <ScytheCalculatorStepButton
-                        variant="previous"
-                        onClick={() => navigate(`../${previousStep.id}`)}
-                      />
-                    )}
-                    {isLastStep && (
-                      <ScytheCalculatorStepButton variant="final" />
-                    )}
-                  </>
-                }
-              </div>
+              {formControl && (
+                <div className="flex flex-col w-full gap-y-3">
+                  <FormControl
+                    {...formControl}
+                    value={value}
+                    onChange={onChangeHandler}
+                    {
+                      /** set autofocus wherever possible */
+                      ...(formControl.variant === 'number' ||
+                      formControl.variant === 'text'
+                        ? { autoFocus: true }
+                        : {})
+                    }
+                  />
+                  {showErrorMessages &&
+                    errors &&
+                    errors.map((errorText, index) => (
+                      <Typography
+                        key={index}
+                        variant="error"
+                        className="pl-2 pr-4"
+                      >
+                        {errorText}
+                      </Typography>
+                    ))}
+                </div>
+              )}
+              {showButtonContainer && (
+                <div className="flex flex-col w-full gap-y-2">
+                  {
+                    <>
+                      {showGettingStarted && (
+                        <ScytheCalculatorStepButton variant="getting-started" />
+                      )}
+                      {showNextStep && (
+                        <ScytheCalculatorStepButton variant="next" />
+                      )}
+                      {showPreviousStep && (
+                        <ScytheCalculatorStepButton
+                          variant="previous"
+                          onClick={() => navigate(`../${previousStep.id}`)}
+                        />
+                      )}
+                      {showLastStep && (
+                        <ScytheCalculatorStepButton variant="final" />
+                      )}
+                    </>
+                  }
+                </div>
+              )}
             </>
           }
         </form>

@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useState } from 'react';
+import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import {
   ScytheCalculatorScorePieces,
@@ -7,15 +7,21 @@ import {
 import {
   ScytheCalculatorStep,
   ScytheCalculatorStepHome,
+  ScytheCalculatorStepItem,
   scytheCalculatorSteps,
   ScytheCalculatorStepScore,
   stepIdtoScorePiecesKeyMap,
 } from './steps';
 
 /* eslint-disable-next-line */
-export interface ScytheCalculatorRouterProps {}
+export interface ScytheCalculatorRouterProps {
+  title?: string;
+}
 
-export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
+export const ScytheCalculatorRouter = ({
+  title,
+  ...props
+}: ScytheCalculatorRouterProps) => {
   const navigate = useNavigate();
 
   const steps = scytheCalculatorSteps;
@@ -44,11 +50,34 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
         score[key] = value as number;
         break;
     }
+
     setScore(new ScytheCalculatorScorePieces(score));
   };
 
   const resetScore = () => {
     setScore(new ScytheCalculatorScorePieces());
+  };
+
+  useEffect(() => {
+    if (!title) return;
+
+    document.title = title;
+  }, [title]);
+
+  const onStepSubmitCallback = (
+    event: BaseSyntheticEvent,
+    id: ScytheCalculatorStepItem['id'],
+    index: number,
+    steps: ScytheCalculatorStepItem[]
+  ) => {
+    event.preventDefault();
+
+    const key = stepIdtoScorePiecesKeyMap[id];
+    const value = event.target.value;
+    updateScore(key, value);
+
+    const isLastPage = index === steps.length - 1;
+    navigate(isLastPage ? 'score' : steps[index + 1].id);
   };
 
   return (
@@ -66,18 +95,9 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
               currentIndex={index}
               steps={arr}
               value={score[stepIdtoScorePiecesKeyMap[id]]}
-              onSubmit={(event: BaseSyntheticEvent) => {
-                event.preventDefault();
-
-                updateScore(
-                  stepIdtoScorePiecesKeyMap[id],
-                  event.target[0].value
-                );
-
-                navigate(
-                  index === arr.length - 1 ? 'score' : steps[index + 1].id
-                );
-              }}
+              onSubmit={(event: BaseSyntheticEvent) =>
+                onStepSubmitCallback(event, id, index, arr)
+              }
               onChange={(event: BaseSyntheticEvent) => {
                 updateScore(stepIdtoScorePiecesKeyMap[id], event.target.value);
               }}
@@ -95,6 +115,7 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
               navigate(firstStepUrl);
             }}
             scorePieces={score}
+            steps={steps}
           />
         }
       />

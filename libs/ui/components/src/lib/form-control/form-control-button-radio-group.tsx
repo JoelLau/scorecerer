@@ -1,5 +1,6 @@
 import { cleanClasses } from '@scorecerer/util';
 import React, { BaseSyntheticEvent } from 'react';
+import Typography from '../typography/typography';
 import { FormControlBaseProps } from './form-control';
 import FormControlButtonRadio, {
   FormControlButtonRadioProps,
@@ -29,6 +30,7 @@ export function FormControlButtonRadioGroup({
 
   return (
     <div className={classes}>
+      <Typography variant="h1">Active: {value}</Typography>
       {options.map((option, index) => (
         <FormControlButtonRadio
           key={index}
