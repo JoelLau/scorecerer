@@ -1,21 +1,11 @@
-import { cleanup, getByText, render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import App from './app';
 
-describe('App', () => {
-  afterEach(() => {
-    delete global['fetch'];
-    cleanup();
-  });
-
-  it('should render successfully', async () => {
-    global['fetch'] = jest.fn().mockResolvedValueOnce({
-      json: () => ({
-        message: 'my message',
-      }),
-    });
-
-    const { baseElement } = render(<App />);
-    await waitFor(() => getByText(baseElement, 'my message'));
+describe(`given 'App'`, () => {
+  it(`should render`, () => {
+    const { baseElement } = render(<App />, { wrapper: MemoryRouter });
+    expect(baseElement).toBeTruthy();
   });
 });

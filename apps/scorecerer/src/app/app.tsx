@@ -1,17 +1,15 @@
-import { Message } from '@scorecerer/api-interfaces';
-import React, { useEffect, useState } from 'react';
-import NxWelcome from './nx-welcome';
+import { ScytheRouter } from '@scorecerer/features/scythe/ui';
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 export const App = () => {
-  const [{ title }, setMessage] = useState<Message>({ title: '' });
-
-  useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
-  }, []);
-
-  return <NxWelcome title={title}></NxWelcome>;
+  return (
+    <Routes>
+      <Route index element={<Navigate to="scythe" />} />
+      <Route path="/scythe/*" element={<ScytheRouter />} />
+      <Route path="*" element={<Navigate to="scythe" />} />
+    </Routes>
+  );
 };
 
 export default App;
