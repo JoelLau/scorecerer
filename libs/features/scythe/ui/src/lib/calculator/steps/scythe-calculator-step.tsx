@@ -53,7 +53,16 @@ export function ScytheCalculatorStep({
               {children}
               {formControl && (
                 <div className="flex flex-col w-full gap-y-1">
-                  <FormControl {...formControl} />
+                  <FormControl
+                    {...formControl}
+                    {
+                      /** set autofocus wherever possible */
+                      ...(formControl.variant === 'number' ||
+                      formControl.variant === 'text'
+                        ? { autoFocus: true }
+                        : {})
+                    }
+                  />
                 </div>
               )}
               <div className="flex flex-col w-full gap-y-2">

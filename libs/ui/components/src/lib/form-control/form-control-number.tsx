@@ -1,3 +1,4 @@
+import { BaseSyntheticEvent } from 'react';
 import { FormControlBaseProps } from './form-control';
 
 export interface FormControlNumberProps extends FormControlBaseProps {
@@ -15,6 +16,10 @@ export function FormControlNumber({
   className,
   ...props
 }: FormControlNumberProps) {
+  const onFocusHandler = (event: BaseSyntheticEvent) => {
+    event.target.select();
+  };
+
   return (
     <input
       type="number"
@@ -23,6 +28,7 @@ export function FormControlNumber({
           className || ''
       }
       data-testid="form-control-number"
+      onFocus={onFocusHandler}
       {...props}
     />
   );
