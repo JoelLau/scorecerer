@@ -1,6 +1,11 @@
-import { Card, FormControl, FormControlProps } from '@scorecerer/ui/components';
+import {
+  Card,
+  FormControl,
+  FormControlProps,
+  Typography,
+} from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
-import { BaseSyntheticEvent, ReactNode } from 'react';
+import { BaseSyntheticEvent, ReactNode, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces.config';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
@@ -15,6 +20,7 @@ export interface ScytheCalculatorStepProps {
   currentIndex?: number;
   steps?: typeof scytheCalculatorSteps;
   value?: any;
+  validator?: (value: string) => string[];
 }
 
 export function ScytheCalculatorStep({
@@ -26,8 +32,13 @@ export function ScytheCalculatorStep({
   currentIndex,
   steps,
   value,
+  validator,
 }: ScytheCalculatorStepProps) {
+  const [hasSubmitAttempt, setHasSubmitAttempt] = useState(false);
+
   const onFormSubmitHandler = (event: BaseSyntheticEvent) => {
+    setHasSubmitAttempt(true);
+
     if (onSubmit) {
       onSubmit(event);
     }
@@ -45,6 +56,14 @@ export function ScytheCalculatorStep({
 
   const navigate = useNavigate();
 
+  const errors: string[] = useMemo(() => {
+    if (!validator) {
+      return [];
+    }
+
+    return validator(value);
+  }, [value, validator]);
+
   return (
     <PageLayoutStacked>
       <PageTitle breadcrumbPieces={scytheCalculatorBreadcrumbPieces}>
@@ -61,22 +80,35 @@ export function ScytheCalculatorStep({
           {
             <>
               {children}
-              {formControl && (
-                <div className="flex flex-col w-full gap-y-1">
-                  <FormControl
-                    {...formControl}
-                    value={value}
-                    onChange={onChangeHandler}
-                    {
-                      /** set autofocus wherever possible */
-                      ...(formControl.variant === 'number' ||
-                      formControl.variant === 'text'
-                        ? { autoFocus: true }
-                        : {})
-                    }
-                  />
-                </div>
-              )}
+              <div className="flex flex-col w-full gap-y-3">
+                {formControl && (
+                  <>
+                    <FormControl
+                      {...formControl}
+                      value={value}
+                      onChange={onChangeHandler}
+                      {
+                        /** set autofocus wherever possible */
+                        ...(formControl.variant === 'number' ||
+                        formControl.variant === 'text'
+                          ? { autoFocus: true }
+                          : {})
+                      }
+                    />
+                    {hasSubmitAttempt &&
+                      errors &&
+                      errors.map((errorText, index) => (
+                        <Typography
+                          key={index}
+                          variant="error"
+                          className="pl-2 pr-4"
+                        >
+                          {errorText}
+                        </Typography>
+                      ))}
+                  </>
+                )}
+              </div>
               <div className="flex flex-col w-full gap-y-2">
                 {
                   <>

@@ -11,7 +11,7 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
   {
     id: 'player-count',
     children: [
-      <Typography variant="h1">How many people are there?</Typography>,
+      <Typography variant="h1">How many people are playing?</Typography>,
     ],
     formControl: {
       variant: 'number',
@@ -21,7 +21,13 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       min: 1,
       autoFocus: true,
       placeholder: 'Player Count (1 - 7)',
-      validator: (value: string): string[] => [],
+    },
+    validator: (value: string): string[] => {
+      const num = parseInt(value, 10);
+      if (isNaN(num) || num > 7 || num < 1) {
+        return [`Player Count must be a number less than 7 and more than 1`];
+      }
+      return [];
     },
   },
   {
@@ -33,8 +39,8 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       variant: 'button-radio-group',
       name: 'faction',
       options: scytheCalculatorFactionOptions,
-      validator: (value: string | number): string[] => [],
     },
+    validator: (value: string | number): string[] => [],
   },
   {
     id: 'popularity',
@@ -47,8 +53,8 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       min: 0,
       autoFocus: true,
       placeholder: 'Popularity (0 - 18)',
-      validator: (value: string): string[] => [],
     },
+    validator: (value: string): string[] => [],
   },
   {
     id: 'stars',
@@ -63,8 +69,8 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       min: 0,
       autoFocus: true,
       placeholder: 'Stars (0 - 6)',
-      validator: (value: string): string[] => [],
     },
+    validator: (value: string): string[] => [],
   },
   {
     id: 'territories',
@@ -80,8 +86,8 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       min: 0,
       autoFocus: true,
       placeholder: 'Territories Controlled',
-      validator: (value: string): string[] => [],
     },
+    validator: (value: string): string[] => [],
   },
   {
     id: 'resources',
@@ -95,8 +101,8 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       min: 0,
       autoFocus: true,
       placeholder: 'Resources Controlled',
-      validator: (value: string): string[] => [],
     },
+    validator: (value: string): string[] => [],
   },
   {
     id: 'structure-bonus',
@@ -112,8 +118,8 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       min: 0,
       autoFocus: true,
       placeholder: 'Structure Bonus',
-      validator: (value: string): string[] => [],
     },
+    validator: (value: string): string[] => [],
   },
   {
     id: 'encounter-territories',
@@ -129,8 +135,8 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       min: 0,
       autoFocus: true,
       placeholder: 'Encounter Territories Controlled',
-      validator: (value: string): string[] => [],
     },
+    validator: (value: string): string[] => [],
   },
 ];
 

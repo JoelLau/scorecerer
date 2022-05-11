@@ -25,7 +25,7 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
     new ScytheCalculatorScorePieces()
   );
 
-  const updateScorePiece = (
+  const updateScore = (
     key: keyof ScytheCalculatorScorePiecesI,
     value: string | number
   ) => {
@@ -47,6 +47,10 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
     setScore(new ScytheCalculatorScorePieces(score));
   };
 
+  const resetScore = () => {
+    setScore(new ScytheCalculatorScorePieces());
+  };
+
   return (
     <Routes>
       <Route
@@ -66,7 +70,7 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
                 onSubmit={(event: BaseSyntheticEvent) => {
                   event.preventDefault();
 
-                  updateScorePiece(
+                  updateScore(
                     stepIdtoScorePiecesKeyMap[id],
                     event.target[0].value
                   );
@@ -76,7 +80,7 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
                   );
                 }}
                 onChange={(event: BaseSyntheticEvent) => {
-                  updateScorePiece(
+                  updateScore(
                     stepIdtoScorePiecesKeyMap[id],
                     event.target.value
                   );
@@ -92,7 +96,10 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
         path="score"
         element={
           <ScytheCalculatorStepScore
-            firstStepUrl={firstStepUrl}
+            onReset={(event: BaseSyntheticEvent) => {
+              resetScore();
+              navigate(firstStepUrl);
+            }}
             scorePieces={score}
           />
         }

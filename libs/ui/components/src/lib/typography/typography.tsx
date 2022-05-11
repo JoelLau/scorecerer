@@ -23,7 +23,7 @@ const getTypographyClasses = ({ tag, variant }: TypographyProps): string => {
     (tag &&
       Object.keys(TypographyVariantClassMap).includes(tag) &&
       TypographyVariantClassMap[
-      tag as keyof typeof TypographyVariantClassMap
+        tag as keyof typeof TypographyVariantClassMap
       ]) ||
     TypographyVariantClassMap['p']
   );
@@ -33,10 +33,11 @@ export const TypographyVariantClassMap = {
   h1: 'text-3xl font-bold',
   h2: 'text-2xl font-bold',
   p: 'text-sm',
+  error: 'text-sm text-red-600',
   button: 'text-sm',
   'brand-logo': 'text-lg font-bold',
   kbd: 'px-2.5 py-1 bg-gray-200 rounded-lg mx-2',
-  link: 'text-sm hover:underline '
+  link: 'text-sm hover:underline ',
 };
 
 export type TypographyTag = 'h1' | 'h2' | 'p' | 'div' | 'kbd';

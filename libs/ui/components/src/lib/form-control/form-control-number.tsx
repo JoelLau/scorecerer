@@ -24,8 +24,12 @@ export function FormControlNumber({
     event.target.select();
   };
 
-  if (props.value === undefined && inputRef.current) {
+  if (inputRef.current && props.value === undefined) {
     inputRef.current.value = '';
+  }
+
+  if (inputRef.current && props.autoFocus) {
+    inputRef.current.focus();
   }
 
   const onChangeHandler = (event: BaseSyntheticEvent) => {

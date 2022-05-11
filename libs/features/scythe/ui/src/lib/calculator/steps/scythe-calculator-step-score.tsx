@@ -1,22 +1,26 @@
 import { Card, Typography } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
-import { useMemo } from 'react';
+import { BaseSyntheticEvent, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ScytheCalculatorScorePieces } from '../score-pieces';
 import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces.config';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
 
 export interface ScytheCalculatorStepScoreProps {
-  firstStepUrl: string;
   scorePieces: ScytheCalculatorScorePieces;
+  onReset?: (event: BaseSyntheticEvent) => unknown;
 }
 
 export function ScytheCalculatorStepScore({
-  firstStepUrl,
   scorePieces,
+  onReset,
 }: ScytheCalculatorStepScoreProps) {
-  const navigate = useNavigate();
-  const onStartOverButtonClick = () => navigate(firstStepUrl);
+  const onStartOverButtonClick = (event: BaseSyntheticEvent) => {
+    if (!onReset) {
+      return;
+    }
+    onReset(event);
+  };
 
   const finalScore = useMemo(() => {
     return scorePieces.getFinalScore();
