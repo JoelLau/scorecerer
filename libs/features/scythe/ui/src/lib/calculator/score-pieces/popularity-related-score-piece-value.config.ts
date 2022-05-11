@@ -10,16 +10,16 @@ export const popularityRelatedScorePieces: ScorePieceWorth[] = [
   { starTokens: 5, territoriesControlled: 4, resourcePairs: 3 },
 ];
 
-export const getPopularityTier = (popularity: number): 1 | 2 | 3 => {
+export const getPopularityTier = (popularity: number): 0 | 1 | 2 => {
   if (popularity <= 6) {
-    return 1;
+    return 0;
   }
 
   if (popularity > 6 && popularity < 13) {
-    return 2;
+    return 1;
   }
 
-  return 3;
+  return 2;
 };
 
 export const getPopularityTierData = (popularity: number): ScorePieceWorth => {

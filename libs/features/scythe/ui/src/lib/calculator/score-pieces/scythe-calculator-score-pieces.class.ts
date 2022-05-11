@@ -13,7 +13,7 @@ export class ScytheCalculatorScorePieces
   encounterTerritories?: number;
   polaniaSpecial?: string;
 
-  readonly getFinalScore = getFinalScore.bind(this, this);
+  readonly getFinalScore = getFinalScore.bind(null, this);
 
   constructor({
     playerCount,
@@ -59,18 +59,19 @@ export const getFinalScore = ({
   encounterTerritories = 0,
   polaniaSpecial,
 }: ScytheCalculatorScorePieces): number => {
-  return Object.entries({
-    playerCount: 0,
-    faction: 0,
-    popularity: 0,
+  const final = Object.entries({
     stars: stars * getScorePieceWorth(popularity, 'starTokens'),
     territories:
       territories * getScorePieceWorth(popularity, 'territoriesControlled'),
     resources:
       Math.floor(resources / 2) *
       getScorePieceWorth(popularity, 'resourcePairs'),
-    structureBonus: structureBonus,
+    structureBonus,
     encounterTerritories:
       polaniaSpecial === 'polania-special-true' ? encounterTerritories * 3 : 0,
-  }).reduce((prev, [key, value]) => prev + parseInt(`${value}`, 10), 0);
+  }).reduce((prev, [, rawValue]) => {
+    return prev + (parseInt(`${rawValue}`, 10) || 0);
+  }, 0);
+
+  return final;
 };

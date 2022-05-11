@@ -27,13 +27,11 @@ export function ScytheCalculatorStepScore({
 
   const onEditClick = (event: BaseSyntheticEvent) => {
     if (steps && steps[0] && steps[0].id) {
-      navigate(steps[0].id);
+      navigate(`../${steps[0].id}`);
     }
   };
 
-  const finalScore = useMemo(() => {
-    return scorePieces.getFinalScore();
-  }, [scorePieces]);
+  const finalScore = scorePieces.getFinalScore();
 
   return (
     <PageLayoutStacked>
@@ -73,49 +71,65 @@ export function ScytheCalculatorStepScore({
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Players</td>
               <td className="pr-8 text-right">
-                {scorePieces.playerCount || undefined}
+                {scorePieces.playerCount || (
+                  <Typography className="text-gray-400">(undefined)</Typography>
+                )}
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Faction</td>
               <td className="pr-8 text-right">
-                {scorePieces.faction || undefined}
+                {scorePieces.faction || (
+                  <Typography className="text-gray-400">(undefined)</Typography>
+                )}
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Popularity</td>
               <td className="pr-8 text-right">
-                {scorePieces.popularity || undefined}
+                {scorePieces.popularity || (
+                  <Typography className="text-gray-400">(undefined)</Typography>
+                )}
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Stars</td>
               <td className="pr-8 text-right">
-                {scorePieces.stars || undefined}
+                {scorePieces.stars || (
+                  <Typography className="text-gray-400">(undefined)</Typography>
+                )}
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Territories</td>
               <td className="pr-8 text-right">
-                {scorePieces.stars || undefined}
+                {scorePieces.stars || (
+                  <Typography className="text-gray-400">(undefined)</Typography>
+                )}
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Resources</td>
               <td className="pr-8 text-right">
-                {scorePieces.stars || undefined}
+                {scorePieces.stars || (
+                  <Typography className="text-gray-400">(undefined)</Typography>
+                )}
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Structure Bonus Pts</td>
               <td className="pr-8 text-right">
-                {scorePieces.structureBonus || undefined}
+                {scorePieces.structureBonus || (
+                  <Typography className="text-gray-400">(undefined)</Typography>
+                )}
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Encounter Territories</td>
               <td className="pr-8 text-right">
-                {scorePieces.encounterTerritories || undefined}
+                {scorePieces.encounterTerritories || (
+                  <Typography className="text-gray-400">(undefined)</Typography>
+                )}
               </td>
             </tr>
           </tbody>
