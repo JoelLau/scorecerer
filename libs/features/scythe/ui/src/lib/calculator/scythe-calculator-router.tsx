@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useState } from 'react';
+import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import {
   ScytheCalculatorScorePieces,
@@ -13,9 +13,14 @@ import {
 } from './steps';
 
 /* eslint-disable-next-line */
-export interface ScytheCalculatorRouterProps {}
+export interface ScytheCalculatorRouterProps {
+  title?: string;
+}
 
-export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
+export const ScytheCalculatorRouter = ({
+  title,
+  ...props
+}: ScytheCalculatorRouterProps) => {
   const navigate = useNavigate();
 
   const steps = scytheCalculatorSteps;
@@ -50,6 +55,12 @@ export const ScytheCalculatorRouter = (props: ScytheCalculatorRouterProps) => {
   const resetScore = () => {
     setScore(new ScytheCalculatorScorePieces());
   };
+
+  useEffect(() => {
+    if (!title) return;
+
+    document.title = title;
+  }, [title]);
 
   return (
     <Routes>
