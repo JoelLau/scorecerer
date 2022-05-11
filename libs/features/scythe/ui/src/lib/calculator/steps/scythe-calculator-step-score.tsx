@@ -62,6 +62,64 @@ export function ScytheCalculatorStepScore({
             <span className="mr-3 text-gray-900 text-9xl">{finalScore}</span>
           </Typography>
         </div>
+        <table className="w-full text-gray-600">
+          <thead className="hidden">
+            <tr>
+              <td>Category</td>
+              <td>Quanity</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Players</td>
+              <td className="pr-8 text-right">
+                {scorePieces.playerCount || undefined}
+              </td>
+            </tr>
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Faction</td>
+              <td className="pr-8 text-right">
+                {scorePieces.faction || undefined}
+              </td>
+            </tr>
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Popularity</td>
+              <td className="pr-8 text-right">
+                {scorePieces.popularity || undefined}
+              </td>
+            </tr>
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Stars</td>
+              <td className="pr-8 text-right">
+                {scorePieces.stars || undefined}
+              </td>
+            </tr>
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Territories</td>
+              <td className="pr-8 text-right">
+                {scorePieces.stars || undefined}
+              </td>
+            </tr>
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Resources</td>
+              <td className="pr-8 text-right">
+                {scorePieces.stars || undefined}
+              </td>
+            </tr>
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Structure Bonus Pts</td>
+              <td className="pr-8 text-right">
+                {scorePieces.structureBonus || undefined}
+              </td>
+            </tr>
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Encounter Territories</td>
+              <td className="pr-8 text-right">
+                {scorePieces.encounterTerritories || undefined}
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <ScytheCalculatorStepButton
           variant="reset"
           onClick={onStartOverButtonClick}
