@@ -7,6 +7,7 @@ import {
 import {
   ScytheCalculatorStep,
   ScytheCalculatorStepHome,
+  ScytheCalculatorStepItem,
   scytheCalculatorSteps,
   ScytheCalculatorStepScore,
   stepIdtoScorePiecesKeyMap,
@@ -62,6 +63,23 @@ export const ScytheCalculatorRouter = ({
     document.title = title;
   }, [title]);
 
+  const onStepSubmitCallback = (
+    event: BaseSyntheticEvent,
+    id: ScytheCalculatorStepItem['id'],
+    index: number,
+    steps: ScytheCalculatorStepItem[]
+  ) => {
+    event.preventDefault();
+
+    const key = stepIdtoScorePiecesKeyMap[id];
+    const value = (event.target[0] || event.target).value;
+    updateScore(key, value);
+
+    const isLastPage = index === steps.length - 1;
+    const nextPageUrl = steps[index + 1].id;
+    navigate(isLastPage ? 'score' : nextPageUrl);
+  };
+
   return (
     <Routes>
       <Route
@@ -77,18 +95,9 @@ export const ScytheCalculatorRouter = ({
               currentIndex={index}
               steps={arr}
               value={score[stepIdtoScorePiecesKeyMap[id]]}
-              onSubmit={(event: BaseSyntheticEvent) => {
-                event.preventDefault();
-
-                updateScore(
-                  stepIdtoScorePiecesKeyMap[id],
-                  event.target[0].value
-                );
-
-                navigate(
-                  index === arr.length - 1 ? 'score' : steps[index + 1].id
-                );
-              }}
+              onSubmit={(event: BaseSyntheticEvent) =>
+                onStepSubmitCallback(event, id, index, arr)
+              }
               onChange={(event: BaseSyntheticEvent) => {
                 updateScore(stepIdtoScorePiecesKeyMap[id], event.target.value);
               }}
