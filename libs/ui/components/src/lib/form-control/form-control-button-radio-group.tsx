@@ -30,7 +30,6 @@ export function FormControlButtonRadioGroup({
 
   return (
     <div className={classes}>
-      <Typography variant="h1">Active: {value}</Typography>
       {options.map((option, index) => (
         <FormControlButtonRadio
           key={index}

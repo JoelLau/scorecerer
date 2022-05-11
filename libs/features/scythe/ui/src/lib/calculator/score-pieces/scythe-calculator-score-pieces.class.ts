@@ -11,8 +11,9 @@ export class ScytheCalculatorScorePieces
   resources?: number;
   structureBonus?: number;
   encounterTerritories?: number;
+  polaniaSpecial?: string;
 
-  readonly getFinalScore = getFinalScore.bind(this, this);
+  readonly getFinalScore = getFinalScore.bind(null, this);
 
   constructor({
     playerCount,
@@ -23,6 +24,7 @@ export class ScytheCalculatorScorePieces
     resources,
     structureBonus,
     encounterTerritories,
+    polaniaSpecial,
   }: ScytheCalculatorScorePiecesI = {}) {
     this.playerCount = playerCount;
     this.faction = faction;
@@ -32,6 +34,7 @@ export class ScytheCalculatorScorePieces
     this.resources = resources;
     this.structureBonus = structureBonus;
     this.encounterTerritories = encounterTerritories;
+    this.polaniaSpecial = polaniaSpecial;
   }
 }
 
@@ -44,6 +47,7 @@ export interface ScytheCalculatorScorePiecesI {
   resources?: number;
   structureBonus?: number;
   encounterTerritories?: number;
+  polaniaSpecial?: string;
 }
 
 export const getFinalScore = ({
@@ -53,18 +57,21 @@ export const getFinalScore = ({
   resources = 0,
   structureBonus = 0,
   encounterTerritories = 0,
+  polaniaSpecial,
 }: ScytheCalculatorScorePieces): number => {
-  return Object.entries({
-    playerCount: 0,
-    faction: 0,
-    popularity: 0,
+  const final = Object.entries({
     stars: stars * getScorePieceWorth(popularity, 'starTokens'),
     territories:
       territories * getScorePieceWorth(popularity, 'territoriesControlled'),
     resources:
       Math.floor(resources / 2) *
       getScorePieceWorth(popularity, 'resourcePairs'),
-    structureBonus: structureBonus,
-    encounterTerritories: encounterTerritories,
-  }).reduce((prev, [key, value]) => prev + parseInt(`${value}`, 10), 0);
+    structureBonus,
+    encounterTerritories:
+      polaniaSpecial === 'polania-special-true' ? encounterTerritories * 3 : 0,
+  }).reduce((prev, [, rawValue]) => {
+    return prev + (parseInt(`${rawValue}`, 10) || 0);
+  }, 0);
+
+  return final;
 };

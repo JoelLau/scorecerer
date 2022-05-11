@@ -86,7 +86,7 @@ export function ScytheCalculatorStep({
       <PageTitle breadcrumbPieces={scytheCalculatorBreadcrumbPieces}>
         Scythe Score Calculator
       </PageTitle>
-      <Card>
+      <Card className="mb-16">
         <form
           className={
             'flex flex-col items-start w-full pt-3 justify-evenly gap-y-10 ' +
