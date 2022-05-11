@@ -121,6 +121,46 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
     },
     validator: (value: string): string[] => [],
   },
+];
+
+export const ScytheCalculatorPolaniaSpecialStepItem: ScytheCalculatorStepItem =
+  {
+    id: 'polania-special',
+    children: [
+      <div className="flex flex-col gap-y-2">
+        <Typography variant="h1">
+          Polania gains a new special ability in 6-7 player games.&nbsp; Do you
+          want to use it?
+        </Typography>
+        <Typography variant="p" className="px-1 pt-6 pb-4 italic text-gray-400">
+          "At end of game, gain $3 for each encounter territory you control"
+        </Typography>
+      </div>,
+    ],
+    formControl: {
+      variant: 'button-radio-group',
+      name: 'polania-special',
+      options: [
+        {
+          id: 'polania-special-true',
+          value: 'polania-special-true',
+          name: 'faction',
+          className: 'w-full',
+          children: [<Typography>Yes</Typography>],
+        },
+        {
+          id: 'polania-special-false',
+          value: 'polania-special-false',
+          name: 'faction',
+          className: 'w-full',
+          children: [<Typography>No</Typography>],
+        },
+      ],
+    },
+    validator: (value: string): string[] => [],
+  };
+
+export const ScytheCalculatorEncounterTerritoriesStepItem: ScytheCalculatorStepItem =
   {
     id: 'encounter-territories',
     children: [
@@ -137,8 +177,7 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
       placeholder: 'Encounter Territories Controlled',
     },
     validator: (value: string): string[] => [],
-  },
-];
+  };
 
 export const stepIdtoScorePiecesKeyMap: {
   [key: string]: keyof ScytheCalculatorScorePiecesI;
@@ -151,4 +190,5 @@ export const stepIdtoScorePiecesKeyMap: {
   resources: 'resources',
   'structure-bonus': 'structureBonus',
   'encounter-territories': 'encounterTerritories',
+  'polania-special': 'polaniaSpecial',
 };

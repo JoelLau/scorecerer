@@ -5,6 +5,8 @@ import {
   ScytheCalculatorScorePiecesI,
 } from './score-pieces/scythe-calculator-score-pieces.class';
 import {
+  ScytheCalculatorEncounterTerritoriesStepItem,
+  ScytheCalculatorPolaniaSpecialStepItem,
   ScytheCalculatorStep,
   ScytheCalculatorStepHome,
   ScytheCalculatorStepItem,
@@ -20,16 +22,25 @@ export interface ScytheCalculatorRouterProps {
 
 export const ScytheCalculatorRouter = ({
   title,
-  ...props
 }: ScytheCalculatorRouterProps) => {
   const navigate = useNavigate();
-
-  const steps = scytheCalculatorSteps;
-  const firstStepUrl = steps[0].id;
 
   const [score, setScore] = useState<ScytheCalculatorScorePieces>(
     new ScytheCalculatorScorePieces()
   );
+
+  const steps = [
+    ...scytheCalculatorSteps,
+    ...(score.faction === 'polania-republic' &&
+    (score.playerCount || Number.POSITIVE_INFINITY) > 5
+      ? [ScytheCalculatorPolaniaSpecialStepItem]
+      : []),
+    ...(score.faction === 'polania-republic' &&
+    score.polaniaSpecial === 'polania-special-true'
+      ? [ScytheCalculatorEncounterTerritoriesStepItem]
+      : []),
+  ];
+  const firstStepUrl = steps[0].id;
 
   const updateScore = (
     key: keyof ScytheCalculatorScorePiecesI,
@@ -37,6 +48,7 @@ export const ScytheCalculatorRouter = ({
   ) => {
     switch (key) {
       case 'faction':
+      case 'polaniaSpecial':
         score[key] = value as string;
         break;
       case 'playerCount':
