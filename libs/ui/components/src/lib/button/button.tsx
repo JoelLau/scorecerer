@@ -8,19 +8,19 @@ export type ButtonProps =
 
 export type SubmitButtonProps = BaseButtonProps & {
   type: 'submit-button';
-}
+};
 
 export type ResetButtonProps = BaseButtonProps & {
   type: 'reset-button';
-}
+};
 
 export type SimpleButtonProps = BaseButtonProps & {
   type?: 'simple-button';
-}
+};
 
 export type BaseButtonProps = UiComponentBaseProps & {
   // use 'default' if not falsy
-  variant?: 'cta' | 'default' | 'disabled';
+  variant?: 'cta' | 'default' | 'disabled' | 'clickable-text';
 
   // overrides variant to 'active'
   active?: boolean;
@@ -36,7 +36,10 @@ export type BaseButtonProps = UiComponentBaseProps & {
 
   // *
   onClick?: (event: BaseSyntheticEvent) => unknown;
-}
+
+  // *
+  title?: string;
+};
 
 export interface UiComponentBaseProps {
   children?: ReactNode | ReactNode[];
@@ -68,15 +71,18 @@ export const getButtonClasses = ({
   className = '',
 }: ButtonProps): string => {
   return cleanClasses(
-    'test-button-base inline-flex items-center px-4 py-2 border rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 flex justify-center',
+    'test-button-base inline-flex items-center px-4 py-2 border rounded-md text-sm font-medium flex justify-center',
     variant === 'cta'
-      ? 'test-button-cta       border-indigo-800  text-white         bg-indigo-500   hover:bg-indigo-700   shadow-md'
+      ? 'test-button-cta       border-indigo-800  text-white         bg-indigo-500   hover:bg-indigo-700   shadow-md    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
       : '',
     !variant || variant === 'default'
-      ? 'test-button-default   border-gray-300     text-gray-700     bg-white        hover:bg-gray-200     shadow-sm'
+      ? 'test-button-default   border-gray-300     text-gray-700     bg-white        hover:bg-gray-200     shadow-sm    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
       : '',
     disabled || variant === 'disabled'
-      ? 'test-button-disabled  border-gray-300     text-gray-700     bg-white        hover:bg-gray-200     shadow-sm'
+      ? 'test-button-disabled  border-gray-300     text-gray-700     bg-white        hover:bg-gray-200     shadow-sm    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+      : '',
+    disabled || variant === 'clickable-text'
+      ? 'test-button-disabled  border-none         text-gray-700     bg-white                              shadow-none  '
       : '',
     className
   );

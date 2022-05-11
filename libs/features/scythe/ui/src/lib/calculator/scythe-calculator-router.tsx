@@ -50,6 +50,7 @@ export const ScytheCalculatorRouter = ({
         score[key] = value as number;
         break;
     }
+
     setScore(new ScytheCalculatorScorePieces(score));
   };
 
@@ -72,12 +73,11 @@ export const ScytheCalculatorRouter = ({
     event.preventDefault();
 
     const key = stepIdtoScorePiecesKeyMap[id];
-    const value = (event.target[0] || event.target).value;
+    const value = event.target.value;
     updateScore(key, value);
 
     const isLastPage = index === steps.length - 1;
-    const nextPageUrl = steps[index + 1].id;
-    navigate(isLastPage ? 'score' : nextPageUrl);
+    navigate(isLastPage ? 'score' : steps[index + 1].id);
   };
 
   return (
@@ -115,6 +115,7 @@ export const ScytheCalculatorRouter = ({
               navigate(firstStepUrl);
             }}
             scorePieces={score}
+            steps={steps}
           />
         }
       />

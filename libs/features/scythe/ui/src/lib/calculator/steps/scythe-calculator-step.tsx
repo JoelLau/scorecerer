@@ -34,10 +34,15 @@ export function ScytheCalculatorStep({
   value,
   validator,
 }: ScytheCalculatorStepProps) {
-  const [hasSubmitAttempt, setHasSubmitAttempt] = useState(false);
+  const [, setHasSubmitAttempt] = useState(false);
+  const [showErrorMessages, setShowErrorMessages] = useState(false);
 
   const onFormSubmitHandler = (event: BaseSyntheticEvent) => {
+    // manually override for easier access on parent component
+    event.target.value = value;
+
     setHasSubmitAttempt(true);
+    setShowErrorMessages(true);
 
     if (onSubmit) {
       onSubmit(event);
@@ -45,6 +50,10 @@ export function ScytheCalculatorStep({
   };
 
   const onChangeHandler = (event: BaseSyntheticEvent) => {
+    if (!errors || errors.length <= 0) {
+      setShowErrorMessages(true);
+    }
+
     if (onChange) {
       onChange(event);
     }
@@ -102,7 +111,7 @@ export function ScytheCalculatorStep({
                         : {})
                     }
                   />
-                  {hasSubmitAttempt &&
+                  {showErrorMessages &&
                     errors &&
                     errors.map((errorText, index) => (
                       <Typography

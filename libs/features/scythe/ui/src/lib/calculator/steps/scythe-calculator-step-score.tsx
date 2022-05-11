@@ -1,25 +1,34 @@
-import { Card, Typography } from '@scorecerer/ui/components';
+import { EditIcon } from '@scorecerer/ui/assets';
+import { Button, Card, Typography } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
 import { BaseSyntheticEvent, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ScytheCalculatorScorePieces } from '../score-pieces';
 import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces.config';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
+import { ScytheCalculatorStepItem } from './scythe-calculator-steps.config';
 
 export interface ScytheCalculatorStepScoreProps {
   scorePieces: ScytheCalculatorScorePieces;
   onReset?: (event: BaseSyntheticEvent) => unknown;
+  steps?: ScytheCalculatorStepItem[];
 }
 
 export function ScytheCalculatorStepScore({
   scorePieces,
   onReset,
+  steps,
 }: ScytheCalculatorStepScoreProps) {
+  const navigate = useNavigate();
+
   const onStartOverButtonClick = (event: BaseSyntheticEvent) => {
-    if (!onReset) {
-      return;
+    onReset && onReset(event);
+  };
+
+  const onEditClick = (event: BaseSyntheticEvent) => {
+    if (steps && steps[0] && steps[0].id) {
+      navigate(steps[0].id);
     }
-    onReset(event);
   };
 
   const finalScore = useMemo(() => {
@@ -36,6 +45,14 @@ export function ScytheCalculatorStepScore({
       </PageTitle>
       <Card>
         <div className="my-4">
+          <Button
+            variant="clickable-text"
+            title="Edit"
+            className="absolute top-3 right-3"
+            onClick={onEditClick}
+          >
+            <EditIcon className="w-4 h-4 fill-gray-200 hover:fill-gray-500" />
+          </Button>
           <Typography
             tag="h1"
             variant="h2"
