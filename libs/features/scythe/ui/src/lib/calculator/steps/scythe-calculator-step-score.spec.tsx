@@ -1,19 +1,11 @@
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { ScytheCalculatorScorePieces } from '../score-pieces';
 import ScytheCalculatorStepScore from './scythe-calculator-step-score';
 
 const defaultProps = {
   firstStepUrl: 'test',
-  scorePieces: {
-    playerCount: 0,
-    faction: '',
-    popularity: 0,
-    stars: 0,
-    territories: 0,
-    resources: 0,
-    structureBonus: 0,
-    encounterTerritories: 0,
-  },
+  scorePieces: new ScytheCalculatorScorePieces(),
 };
 
 describe(`given 'ScytheCalculatorStepScore'`, () => {

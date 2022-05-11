@@ -8,6 +8,7 @@ export interface FormControlNumberProps extends FormControlBaseProps {
   placeholder?: string;
   autoFocus?: boolean;
   className?: string;
+  value?: number;
 }
 
 export function FormControlNumber({

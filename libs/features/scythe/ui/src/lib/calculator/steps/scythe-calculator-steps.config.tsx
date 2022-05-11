@@ -1,5 +1,6 @@
 import { Typography } from '@scorecerer/ui/components';
-import { scytheCalculatorFactionOptions } from '../scythe-calculator-faction-options';
+import { ScytheCalculatorScorePiecesI } from '../score-pieces';
+import { scytheCalculatorFactionOptions } from '../scythe-calculator-faction-options.config';
 import { ScytheCalculatorStepProps } from './scythe-calculator-step';
 
 export interface ScytheCalculatorStepItem extends ScytheCalculatorStepProps {
@@ -10,7 +11,7 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
   {
     id: 'player-count',
     children: [
-      <Typography variant="h1">How many players are there?</Typography>,
+      <Typography variant="h1">How many people are there?</Typography>,
     ],
     formControl: {
       variant: 'number',
@@ -132,3 +133,16 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
     },
   },
 ];
+
+export const stepIdtoScorePiecesKeyMap: {
+  [key: string]: keyof ScytheCalculatorScorePiecesI;
+} = {
+  'player-count': 'playerCount',
+  faction: 'faction',
+  popularity: 'popularity',
+  stars: 'stars',
+  territories: 'territories',
+  resources: 'resources',
+  'structure-bonus': 'structureBonus',
+  'encounter-territories': 'encounterTerritories',
+};

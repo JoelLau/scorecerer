@@ -2,23 +2,13 @@ import { Card, Typography } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces';
+import { ScytheCalculatorScorePieces } from '../score-pieces';
+import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces.config';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
-
-export interface ScytheScorePieces {
-  playerCount?: number;
-  faction?: string;
-  popularity?: number;
-  stars?: number;
-  territories?: number;
-  resources?: number;
-  structureBonus?: number;
-  encounterTerritories?: number;
-}
 
 export interface ScytheCalculatorStepScoreProps {
   firstStepUrl: string;
-  scorePieces: ScytheScorePieces;
+  scorePieces: ScytheCalculatorScorePieces;
 }
 
 export function ScytheCalculatorStepScore({
@@ -29,19 +19,7 @@ export function ScytheCalculatorStepScore({
   const onStartOverButtonClick = () => navigate(firstStepUrl);
 
   const finalScore = useMemo(() => {
-    const stars = scorePieces?.stars || 0;
-    const territories = scorePieces?.territories || 0;
-    const resources = scorePieces?.resources || 0;
-    const structureBonus = scorePieces?.structureBonus || 0;
-    const encounterTerritories = scorePieces?.encounterTerritories || 0;
-
-    return [
-      stars,
-      territories,
-      resources,
-      structureBonus,
-      encounterTerritories,
-    ].reduce((prev, curr) => prev + curr, 0);
+    return scorePieces.getFinalScore();
   }, [scorePieces]);
 
   return (

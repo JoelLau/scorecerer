@@ -2,9 +2,9 @@ import { Card, FormControl, FormControlProps } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
 import { BaseSyntheticEvent, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces';
+import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces.config';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
-import { scytheCalculatorSteps } from './scythe-calculator-steps';
+import { scytheCalculatorSteps } from './scythe-calculator-steps.config';
 
 export interface ScytheCalculatorStepProps {
   children?: ReactNode | ReactNode[];
@@ -66,9 +66,7 @@ export function ScytheCalculatorStep({
                     {!isLastStep && previousStep && (
                       <ScytheCalculatorStepButton
                         variant="previous"
-                        onClick={(event: BaseSyntheticEvent) =>
-                          navigate(previousStep.id)
-                        }
+                        onClick={() => navigate(`../${previousStep.id}`)}
                       />
                     )}
                     {isLastStep && (
