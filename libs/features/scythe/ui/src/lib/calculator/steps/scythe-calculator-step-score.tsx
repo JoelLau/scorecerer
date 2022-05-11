@@ -43,7 +43,7 @@ export function ScytheCalculatorStepScore({
       >
         Scythe Score Calculator
       </PageTitle>
-      <Card>
+      <Card className="mb-16">
         <div className="my-4">
           <Button
             variant="clickable-text"
