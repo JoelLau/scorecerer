@@ -2,7 +2,7 @@ import { Card, Typography } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { scytheCalculatorBreadcrumbPieces } from './scythe-calculator-breadcrumb-pieces';
+import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
 
 export interface ScytheScorePieces {

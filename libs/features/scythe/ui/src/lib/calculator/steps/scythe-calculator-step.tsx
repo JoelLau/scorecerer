@@ -2,7 +2,7 @@ import { Card, FormControl, FormControlProps } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
 import { BaseSyntheticEvent, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { scytheCalculatorBreadcrumbPieces } from './scythe-calculator-breadcrumb-pieces';
+import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
 import { scytheCalculatorSteps } from './scythe-calculator-steps';
 

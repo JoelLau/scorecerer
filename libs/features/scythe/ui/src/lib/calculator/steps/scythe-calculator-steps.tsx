@@ -1,5 +1,5 @@
 import { Typography } from '@scorecerer/ui/components';
-import { scytheCalculatorFactionOptions } from './scythe-calculator-faction-options';
+import { scytheCalculatorFactionOptions } from '../scythe-calculator-faction-options';
 import { ScytheCalculatorStepProps } from './scythe-calculator-step';
 
 export interface ScytheCalculatorStepItem extends ScytheCalculatorStepProps {

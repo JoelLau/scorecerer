@@ -1,11 +1,12 @@
 import React, { BaseSyntheticEvent, useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import ScytheCalculatorStep from './scythe-calculator-step';
-import ScytheCalculatorStepHome from './scythe-calculator-step-home';
-import ScytheCalculatorStepScore, {
+import {
+  ScytheCalculatorStep,
+  ScytheCalculatorStepHome,
+  scytheCalculatorSteps,
+  ScytheCalculatorStepScore,
   ScytheScorePieces,
-} from './scythe-calculator-step-score';
-import { scytheCalculatorSteps } from './scythe-calculator-steps';
+} from './steps';
 
 /* eslint-disable-next-line */
 export interface ScytheCalculatorRouterProps {}
