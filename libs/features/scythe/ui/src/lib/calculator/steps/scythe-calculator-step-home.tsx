@@ -2,7 +2,6 @@ import { BaseSyntheticEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ScytheCalculatorStep from './scythe-calculator-step';
 
-/* eslint-disable-next-line */
 export interface ScytheCalculatorStepHomeProps {
   firstStepUrl: string;
 }

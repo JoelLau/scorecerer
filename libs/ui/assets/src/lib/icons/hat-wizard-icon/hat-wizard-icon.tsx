@@ -1,4 +1,3 @@
-/* eslint-disable-next-line */
 export interface HatWizardIconProps {
   className?: string;
 }

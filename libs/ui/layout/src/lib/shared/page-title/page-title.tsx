@@ -3,7 +3,6 @@ import { cleanClasses } from '@scorecerer/util';
 import { ReactChild } from 'react';
 import PageTitleBreadcrumb, { BreadCrumbPiece } from './page-title-breadcrumb';
 
-/* eslint-disable-next-line */
 export interface PageTitleProps {
   className?: string;
   children?: ReactChild;

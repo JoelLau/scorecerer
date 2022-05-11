@@ -3,7 +3,6 @@ import { cleanClasses } from '@scorecerer/util';
 import { ReactChild } from 'react';
 import { Link } from 'react-router-dom';
 
-/* eslint-disable-next-line */
 export interface PageTitleBreadcrumbProps {
   pieces?: BreadCrumbPiece[];
   className?: string;
