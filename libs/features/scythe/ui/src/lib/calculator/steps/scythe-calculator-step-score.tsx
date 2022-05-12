@@ -69,22 +69,6 @@ export function ScytheCalculatorStepScore({
           </thead>
           <tbody>
             <tr className="w-full rounded-lg ">
-              <td className="py-3 pl-8 text-left">Players</td>
-              <td className="pr-8 text-right">
-                {scorePieces.playerCount || (
-                  <Typography className="text-gray-400">(undefined)</Typography>
-                )}
-              </td>
-            </tr>
-            <tr className="w-full rounded-lg ">
-              <td className="py-3 pl-8 text-left">Faction</td>
-              <td className="pr-8 text-right">
-                {scorePieces.faction || (
-                  <Typography className="text-gray-400">(undefined)</Typography>
-                )}
-              </td>
-            </tr>
-            <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Popularity</td>
               <td className="pr-8 text-right">
                 {scorePieces.popularity || (
@@ -124,14 +108,19 @@ export function ScytheCalculatorStepScore({
                 )}
               </td>
             </tr>
-            <tr className="w-full rounded-lg ">
-              <td className="py-3 pl-8 text-left">Encounter Territories</td>
-              <td className="pr-8 text-right">
-                {scorePieces.encounterTerritories || (
-                  <Typography className="text-gray-400">(undefined)</Typography>
-                )}
-              </td>
-            </tr>
+            {scorePieces.encounterTerritories &&
+              scorePieces.polaniaSpecial === 'polania-special-true' && (
+                <tr className="w-full rounded-lg ">
+                  <td className="py-3 pl-8 text-left">Encounter Territories</td>
+                  <td className="pr-8 text-right">
+                    {scorePieces.encounterTerritories || (
+                      <Typography className="text-gray-400">
+                        (undefined)
+                      </Typography>
+                    )}
+                  </td>
+                </tr>
+              )}
           </tbody>
         </table>
         <ScytheCalculatorStepButton

@@ -9,40 +9,6 @@ export interface ScytheCalculatorStepItem extends ScytheCalculatorStepProps {
 
 export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
   {
-    id: 'player-count',
-    children: [
-      <Typography variant="h1">How many people are playing?</Typography>,
-    ],
-    formControl: {
-      variant: 'number',
-      id: 'player-count',
-      name: 'player-count',
-      max: 7,
-      min: 1,
-      autoFocus: true,
-      placeholder: 'Player Count (1 - 7)',
-    },
-    validator: (value: string): string[] => {
-      const num = parseInt(value, 10);
-      if (isNaN(num) || num > 7 || num < 1) {
-        return [`Player Count must be a number less than 7 and more than 1`];
-      }
-      return [];
-    },
-  },
-  {
-    id: 'faction',
-    children: [
-      <Typography variant="h1">Which faction did you pick?</Typography>,
-    ],
-    formControl: {
-      variant: 'button-radio-group',
-      name: 'faction',
-      options: scytheCalculatorFactionOptions,
-    },
-    validator: (value: string | number): string[] => [],
-  },
-  {
     id: 'popularity',
     children: [<Typography variant="h1">How popular were you?</Typography>],
     formControl: {
