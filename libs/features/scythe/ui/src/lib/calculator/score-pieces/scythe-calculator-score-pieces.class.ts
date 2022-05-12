@@ -12,6 +12,7 @@ export class ScytheCalculatorScorePieces
   structureBonus?: number;
   encounterTerritories?: number;
   polaniaSpecial?: string;
+  coins?: number;
 
   readonly getFinalScore = getFinalScore.bind(null, this);
 
@@ -25,6 +26,7 @@ export class ScytheCalculatorScorePieces
     structureBonus,
     encounterTerritories,
     polaniaSpecial,
+    coins,
   }: ScytheCalculatorScorePiecesI = {}) {
     this.playerCount = playerCount;
     this.faction = faction;
@@ -35,6 +37,7 @@ export class ScytheCalculatorScorePieces
     this.structureBonus = structureBonus;
     this.encounterTerritories = encounterTerritories;
     this.polaniaSpecial = polaniaSpecial;
+    this.coins = coins;
   }
 }
 
@@ -48,6 +51,7 @@ export interface ScytheCalculatorScorePiecesI {
   structureBonus?: number;
   encounterTerritories?: number;
   polaniaSpecial?: string;
+  coins?: number;
 }
 
 export const getFinalScore = ({
@@ -58,6 +62,7 @@ export const getFinalScore = ({
   structureBonus = 0,
   encounterTerritories = 0,
   polaniaSpecial,
+  coins = 0,
 }: ScytheCalculatorScorePieces): number => {
   const final = Object.entries({
     stars: stars * getScorePieceWorth(popularity, 'starTokens'),
@@ -69,6 +74,7 @@ export const getFinalScore = ({
     structureBonus,
     encounterTerritories:
       polaniaSpecial === 'polania-special-true' ? encounterTerritories * 3 : 0,
+    coins,
   }).reduce((prev, [, rawValue]) => {
     return prev + (parseInt(`${rawValue}`, 10) || 0);
   }, 0);

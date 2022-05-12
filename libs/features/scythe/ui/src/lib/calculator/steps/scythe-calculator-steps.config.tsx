@@ -87,6 +87,19 @@ export const scytheCalculatorSteps: ScytheCalculatorStepItem[] = [
     },
     validator: (value: string): string[] => [],
   },
+  {
+    id: 'coins',
+    children: [<Typography variant="h1">How coins do you hold?</Typography>],
+    formControl: {
+      variant: 'number',
+      id: 'coins',
+      name: 'coins',
+      min: 0,
+      autoFocus: true,
+      placeholder: 'Coins',
+    },
+    validator: (value: string): string[] => [],
+  },
 ];
 
 export const ScytheCalculatorPolaniaSpecialStepItem: ScytheCalculatorStepItem =

@@ -4,6 +4,7 @@ import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
 import { BaseSyntheticEvent, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ScytheCalculatorScorePieces } from '../score-pieces';
+import { getScorePieceWorth } from '../score-pieces/popularity-related-score-piece-value.config';
 import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces.config';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
 import { ScytheCalculatorStepItem } from './scythe-calculator-steps.config';
@@ -70,42 +71,45 @@ export function ScytheCalculatorStepScore({
           <tbody>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Popularity</td>
-              <td className="pr-8 text-right">
-                {scorePieces.popularity || (
-                  <Typography className="text-gray-400">(undefined)</Typography>
-                )}
-              </td>
+              <td className="pr-8 text-right">0 pts</td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Stars</td>
               <td className="pr-8 text-right">
-                {scorePieces.stars || (
-                  <Typography className="text-gray-400">(undefined)</Typography>
-                )}
+                {(scorePieces.stars || 0) *
+                  getScorePieceWorth(
+                    scorePieces.popularity || 0,
+                    'starTokens'
+                  ) || 0}{' '}
+                pts
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Territories</td>
               <td className="pr-8 text-right">
-                {scorePieces.stars || (
-                  <Typography className="text-gray-400">(undefined)</Typography>
-                )}
+                {(scorePieces.territories || 0) *
+                  getScorePieceWorth(
+                    scorePieces.popularity || 0,
+                    'territoriesControlled'
+                  ) || 0}{' '}
+                pts
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Resources</td>
               <td className="pr-8 text-right">
-                {scorePieces.stars || (
-                  <Typography className="text-gray-400">(undefined)</Typography>
-                )}
+                {Math.floor((scorePieces.resources || 0) / 2) *
+                  getScorePieceWorth(
+                    scorePieces.popularity || 0,
+                    'resourcePairs'
+                  ) || 0}{' '}
+                pts
               </td>
             </tr>
             <tr className="w-full rounded-lg ">
               <td className="py-3 pl-8 text-left">Structure Bonus Pts</td>
               <td className="pr-8 text-right">
-                {scorePieces.structureBonus || (
-                  <Typography className="text-gray-400">(undefined)</Typography>
-                )}
+                {scorePieces.structureBonus || 0} pts
               </td>
             </tr>
             {scorePieces.encounterTerritories &&
@@ -113,14 +117,14 @@ export function ScytheCalculatorStepScore({
                 <tr className="w-full rounded-lg ">
                   <td className="py-3 pl-8 text-left">Encounter Territories</td>
                   <td className="pr-8 text-right">
-                    {scorePieces.encounterTerritories || (
-                      <Typography className="text-gray-400">
-                        (undefined)
-                      </Typography>
-                    )}
+                    {scorePieces.encounterTerritories || 0} pts
                   </td>
                 </tr>
               )}
+            <tr className="w-full rounded-lg ">
+              <td className="py-3 pl-8 text-left">Coins</td>
+              <td className="pr-8 text-right">{scorePieces.coins || 0} pts</td>
+            </tr>
           </tbody>
         </table>
         <ScytheCalculatorStepButton
