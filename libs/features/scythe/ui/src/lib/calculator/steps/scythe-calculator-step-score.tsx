@@ -1,7 +1,7 @@
 import { EditIcon } from '@scorecerer/ui/assets';
 import { Button, Card, Typography } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
-import { BaseSyntheticEvent } from 'react';
+import { BaseSyntheticEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ScytheCalculatorScorePieces } from '../score-pieces';
 import { getScorePieceWorth } from '../score-pieces/popularity-related-score-piece-value.config';
@@ -11,12 +11,14 @@ import { ScytheCalculatorStepItem } from './scythe-calculator-steps.config';
 
 export interface ScytheCalculatorStepScoreProps {
   scorePieces: ScytheCalculatorScorePieces;
+  onLoad?: () => unknown;
   onReset?: (event: BaseSyntheticEvent) => unknown;
   steps?: ScytheCalculatorStepItem[];
 }
 
 export function ScytheCalculatorStepScore({
   scorePieces,
+  onLoad,
   onReset,
   steps,
 }: ScytheCalculatorStepScoreProps) {
@@ -33,6 +35,12 @@ export function ScytheCalculatorStepScore({
   };
 
   const finalScore = scorePieces.getFinalScore();
+
+  useEffect(() => {
+    if (onLoad) {
+      onLoad();
+    }
+  }, [onLoad]);
 
   return (
     <PageLayoutStacked>

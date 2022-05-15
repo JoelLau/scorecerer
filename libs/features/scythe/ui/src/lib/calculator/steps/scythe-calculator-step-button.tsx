@@ -1,8 +1,15 @@
 import { Button, Typography } from '@scorecerer/ui/components';
 import { BaseSyntheticEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export interface ScytheCalculatorStepButtonProps {
-  variant: 'getting-started' | 'next' | 'previous' | 'final' | 'reset';
+  variant:
+    | 'getting-started'
+    | 'next'
+    | 'previous'
+    | 'final'
+    | 'return-to-score'
+    | 'reset';
   onClick?: (event: BaseSyntheticEvent) => unknown;
 }
 
@@ -10,6 +17,8 @@ export function ScytheCalculatorStepButton({
   variant,
   ...props
 }: ScytheCalculatorStepButtonProps) {
+  const navigate = useNavigate();
+
   switch (variant) {
     case 'getting-started':
       return (
@@ -30,6 +39,16 @@ export function ScytheCalculatorStepButton({
           {...props}
         >
           <Typography variant="button">Previous</Typography>
+        </Button>
+      );
+    case 'return-to-score':
+      return (
+        <Button
+          className="flex w-full flex-start"
+          {...props}
+          onClick={() => navigate('../score')}
+        >
+          <Typography variant="button">Return to score</Typography>
         </Button>
       );
     case 'final':

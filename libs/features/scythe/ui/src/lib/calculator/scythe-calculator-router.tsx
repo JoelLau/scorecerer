@@ -27,6 +27,7 @@ export const ScytheCalculatorRouter = ({
   const [score, setScore] = useState<ScytheCalculatorScorePieces>(
     () => new ScytheCalculatorScorePieces()
   );
+  const [hasCalculatedScore, setHasCalculatedScore] = useState<boolean>(false);
 
   const steps = [
     ...scytheCalculatorSteps,
@@ -63,6 +64,7 @@ export const ScytheCalculatorRouter = ({
   };
 
   const resetScore = () => {
+    setHasCalculatedScore(false);
     setScore(new ScytheCalculatorScorePieces());
   };
 
@@ -114,6 +116,7 @@ export const ScytheCalculatorRouter = ({
                     event.target.value
                   );
                 }}
+                hasCompletedScore={hasCalculatedScore}
                 {...stepProps}
                 key={key}
               />
@@ -125,7 +128,8 @@ export const ScytheCalculatorRouter = ({
         path="score"
         element={
           <ScytheCalculatorStepScore
-            onReset={(event: BaseSyntheticEvent) => {
+            onLoad={() => setHasCalculatedScore(true)}
+            onReset={() => {
               resetScore();
               navigate(firstStepUrl);
             }}

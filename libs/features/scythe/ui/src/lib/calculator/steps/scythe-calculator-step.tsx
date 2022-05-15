@@ -6,13 +6,7 @@ import {
 } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
 import { renderChildren } from '@scorecerer/util';
-import {
-  BaseSyntheticEvent,
-  Fragment,
-  ReactNode,
-  useMemo,
-  useState,
-} from 'react';
+import { BaseSyntheticEvent, ReactNode, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces.config';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
@@ -27,6 +21,7 @@ export interface ScytheCalculatorStepProps {
   currentIndex?: number;
   steps?: typeof scytheCalculatorSteps;
   value?: any;
+  hasCompletedScore?: boolean;
   validator?: (value: string) => string[];
 }
 
@@ -39,6 +34,7 @@ export function ScytheCalculatorStep({
   currentIndex,
   steps,
   value,
+  hasCompletedScore,
   validator,
 }: ScytheCalculatorStepProps) {
   const [, setHasSubmitAttempt] = useState(false);
@@ -73,7 +69,7 @@ export function ScytheCalculatorStep({
   const showGettingStarted = !nextStep && !previousStep;
   const showNextStep = nextStep;
   const showPreviousStep = !isLastStep && previousStep;
-  const showLastStep = isLastStep;
+  const showLastStep = isLastStep || hasCompletedScore;
 
   const showButtonContainer =
     showGettingStarted || showNextStep || showPreviousStep || showLastStep;
@@ -148,7 +144,11 @@ export function ScytheCalculatorStep({
                         />
                       )}
                       {showLastStep && (
-                        <ScytheCalculatorStepButton variant="final" />
+                        <ScytheCalculatorStepButton
+                          variant={
+                            hasCompletedScore ? 'return-to-score' : 'final'
+                          }
+                        />
                       )}
                     </>
                   }
