@@ -1,3 +1,4 @@
+import { renderChildren } from '@scorecerer/util';
 import { BaseSyntheticEvent, ReactNode } from 'react';
 
 export interface FormControlButtonRadioProps {
@@ -49,7 +50,7 @@ export function FormControlButtonRadio({
         onChange={onChangeHandler}
         {...props}
       />
-      {children}
+      {renderChildren(children)}
     </label>
   );
 }

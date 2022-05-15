@@ -5,7 +5,14 @@ import {
   Typography,
 } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
-import { BaseSyntheticEvent, ReactNode, useMemo, useState } from 'react';
+import { renderChildren } from '@scorecerer/util';
+import {
+  BaseSyntheticEvent,
+  Fragment,
+  ReactNode,
+  useMemo,
+  useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { scytheCalculatorBreadcrumbPieces } from '../scythe-calculator-breadcrumb-pieces.config';
 import ScytheCalculatorStepButton from './scythe-calculator-step-button';
@@ -96,7 +103,7 @@ export function ScytheCalculatorStep({
         >
           {
             <>
-              {children}
+              {renderChildren(children)}
               {formControl && (
                 <div className="flex flex-col w-full gap-y-3">
                   <FormControl
