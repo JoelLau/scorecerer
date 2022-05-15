@@ -31,12 +31,8 @@ export const ScytheCalculatorRouter = ({
 
   const steps = [
     ...scytheCalculatorSteps,
-    ...(score.faction === 'polania-republic' &&
-    (score.playerCount || Number.POSITIVE_INFINITY) > 5
-      ? [ScytheCalculatorPolaniaSpecialStepItem]
-      : []),
-    ...(score.faction === 'polania-republic' &&
-    score.polaniaSpecial === 'polania-special-true'
+    ScytheCalculatorPolaniaSpecialStepItem,
+    ...(score.polaniaSpecial === 'polania-special-true'
       ? [ScytheCalculatorEncounterTerritoriesStepItem]
       : []),
   ];
