@@ -1,6 +1,5 @@
 import { Typography } from '@scorecerer/ui/components';
 import { ScytheCalculatorScorePiecesI } from '../score-pieces';
-import { scytheCalculatorFactionOptions } from '../scythe-calculator-faction-options.config';
 import { ScytheCalculatorStepProps } from './scythe-calculator-step';
 
 export interface ScytheCalculatorStepItem extends ScytheCalculatorStepProps {
@@ -170,4 +169,5 @@ export const stepIdtoScorePiecesKeyMap: {
   'structure-bonus': 'structureBonus',
   'encounter-territories': 'encounterTerritories',
   'polania-special': 'polaniaSpecial',
+  coins: 'coins',
 };
