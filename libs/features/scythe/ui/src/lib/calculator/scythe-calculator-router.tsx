@@ -15,7 +15,6 @@ import {
   stepIdtoScorePiecesKeyMap,
 } from './steps';
 
-/* eslint-disable-next-line */
 export interface ScytheCalculatorRouterProps {
   title?: string;
 }
@@ -54,6 +53,7 @@ export const ScytheCalculatorRouter = ({
       case 'resources':
       case 'structureBonus':
       case 'encounterTerritories':
+      case 'coins':
       default:
         score[key] = value as number;
         break;
