@@ -59,6 +59,8 @@ export const ScytheCalculatorRouter = ({
         break;
     }
 
+    console.log(key);
+    console.log(value);
     setScore(new ScytheCalculatorScorePieces(score));
   };
 
@@ -107,6 +109,8 @@ export const ScytheCalculatorRouter = ({
                 onStepSubmitCallback(event, id, index, arr)
               }
               onChange={(event: BaseSyntheticEvent) => {
+                console.log(event);
+                console.log(event.target.value);
                 updateScore(stepIdtoScorePiecesKeyMap[id], event.target.value);
               }}
               {...stepProps}
