@@ -25,8 +25,9 @@ export const ScytheCalculatorRouter = ({
   const navigate = useNavigate();
 
   const [score, setScore] = useState<ScytheCalculatorScorePieces>(
-    new ScytheCalculatorScorePieces()
+    () => new ScytheCalculatorScorePieces()
   );
+  const [hasCalculatedScore, setHasCalculatedScore] = useState<boolean>(false);
 
   const steps = [
     ...scytheCalculatorSteps,
@@ -59,12 +60,11 @@ export const ScytheCalculatorRouter = ({
         break;
     }
 
-    console.log(key);
-    console.log(value);
     setScore(new ScytheCalculatorScorePieces(score));
   };
 
   const resetScore = () => {
+    setHasCalculatedScore(false);
     setScore(new ScytheCalculatorScorePieces());
   };
 
@@ -96,33 +96,40 @@ export const ScytheCalculatorRouter = ({
         index
         element={<ScytheCalculatorStepHome firstStepUrl={firstStepUrl} />}
       />
-      {steps.map(({ id, ...stepProps }, index, arr) => (
-        <Route
-          key={id}
-          path={id}
-          element={
-            <ScytheCalculatorStep
-              currentIndex={index}
-              steps={arr}
-              value={score[stepIdtoScorePiecesKeyMap[id]]}
-              onSubmit={(event: BaseSyntheticEvent) =>
-                onStepSubmitCallback(event, id, index, arr)
-              }
-              onChange={(event: BaseSyntheticEvent) => {
-                console.log(event);
-                console.log(event.target.value);
-                updateScore(stepIdtoScorePiecesKeyMap[id], event.target.value);
-              }}
-              {...stepProps}
-            />
-          }
-        />
-      ))}
+      {steps.map(({ id, ...stepProps }, index, arr) => {
+        const key = `${id}`;
+        return (
+          <Route
+            key={key}
+            path={id}
+            element={
+              <ScytheCalculatorStep
+                currentIndex={index}
+                steps={arr}
+                value={score[stepIdtoScorePiecesKeyMap[id]]}
+                onSubmit={(event: BaseSyntheticEvent) =>
+                  onStepSubmitCallback(event, id, index, arr)
+                }
+                onChange={(event: BaseSyntheticEvent) => {
+                  updateScore(
+                    stepIdtoScorePiecesKeyMap[id],
+                    event.target.value
+                  );
+                }}
+                hasCompletedScore={hasCalculatedScore}
+                {...stepProps}
+                key={key}
+              />
+            }
+          />
+        );
+      })}
       <Route
         path="score"
         element={
           <ScytheCalculatorStepScore
-            onReset={(event: BaseSyntheticEvent) => {
+            onLoad={() => setHasCalculatedScore(true)}
+            onReset={() => {
               resetScore();
               navigate(firstStepUrl);
             }}

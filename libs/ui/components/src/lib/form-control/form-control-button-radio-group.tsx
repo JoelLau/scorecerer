@@ -1,6 +1,5 @@
-import { cleanClasses } from '@scorecerer/util';
-import React, { BaseSyntheticEvent } from 'react';
-import Typography from '../typography/typography';
+import { cleanClasses, renderChildren } from '@scorecerer/util';
+import { BaseSyntheticEvent } from 'react';
 import { FormControlBaseProps } from './form-control';
 import FormControlButtonRadio, {
   FormControlButtonRadioProps,
@@ -30,11 +29,12 @@ export function FormControlButtonRadioGroup({
 
   return (
     <div className={classes}>
-      {options.map((option, index) => (
+      {options.map(({ children, ...option }, index) => (
         <FormControlButtonRadio
           key={index}
           checked={!!value && value === option.value}
           onChange={onChangeHandler}
+          children={renderChildren(children)}
           {...option}
         />
       ))}

@@ -1,7 +1,7 @@
 import { EditIcon } from '@scorecerer/ui/assets';
 import { Button, Card, Typography } from '@scorecerer/ui/components';
 import { PageLayoutStacked, PageTitle } from '@scorecerer/ui/layout';
-import { BaseSyntheticEvent, useMemo } from 'react';
+import { BaseSyntheticEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ScytheCalculatorScorePieces } from '../score-pieces';
 import { getScorePieceWorth } from '../score-pieces/popularity-related-score-piece-value.config';
@@ -11,12 +11,14 @@ import { ScytheCalculatorStepItem } from './scythe-calculator-steps.config';
 
 export interface ScytheCalculatorStepScoreProps {
   scorePieces: ScytheCalculatorScorePieces;
+  onLoad?: () => unknown;
   onReset?: (event: BaseSyntheticEvent) => unknown;
   steps?: ScytheCalculatorStepItem[];
 }
 
 export function ScytheCalculatorStepScore({
   scorePieces,
+  onLoad,
   onReset,
   steps,
 }: ScytheCalculatorStepScoreProps) {
@@ -33,6 +35,12 @@ export function ScytheCalculatorStepScore({
   };
 
   const finalScore = scorePieces.getFinalScore();
+
+  useEffect(() => {
+    if (onLoad) {
+      onLoad();
+    }
+  }, [onLoad]);
 
   return (
     <PageLayoutStacked>
@@ -69,11 +77,16 @@ export function ScytheCalculatorStepScore({
             </tr>
           </thead>
           <tbody>
-            <tr className="w-full rounded-lg ">
+            <tr
+              className="w-full rounded-lg cursor-pointer"
+              onClick={() => {
+                navigate('../popularity');
+              }}
+            >
               <td className="py-3 pl-8 text-left">Popularity</td>
               <td className="pr-8 text-right">0 pts</td>
             </tr>
-            <tr className="w-full rounded-lg ">
+            <tr className="w-full rounded-lg">
               <td className="py-3 pl-8 text-left">Stars</td>
               <td className="pr-8 text-right">
                 {(scorePieces.stars || 0) *
@@ -84,7 +97,12 @@ export function ScytheCalculatorStepScore({
                 pts
               </td>
             </tr>
-            <tr className="w-full rounded-lg ">
+            <tr
+              className="w-full rounded-lg cursor-pointer"
+              onClick={() => {
+                navigate('../territories');
+              }}
+            >
               <td className="py-3 pl-8 text-left">Territories</td>
               <td className="pr-8 text-right">
                 {(scorePieces.territories || 0) *
@@ -95,7 +113,12 @@ export function ScytheCalculatorStepScore({
                 pts
               </td>
             </tr>
-            <tr className="w-full rounded-lg ">
+            <tr
+              className="w-full rounded-lg cursor-pointer"
+              onClick={() => {
+                navigate('../resources');
+              }}
+            >
               <td className="py-3 pl-8 text-left">Resources</td>
               <td className="pr-8 text-right">
                 {Math.floor((scorePieces.resources || 0) / 2) *
@@ -106,7 +129,12 @@ export function ScytheCalculatorStepScore({
                 pts
               </td>
             </tr>
-            <tr className="w-full rounded-lg ">
+            <tr
+              className="w-full rounded-lg cursor-pointer"
+              onClick={() => {
+                navigate('../structure-bonus');
+              }}
+            >
               <td className="py-3 pl-8 text-left">Structure Bonus Pts</td>
               <td className="pr-8 text-right">
                 {scorePieces.structureBonus || 0} pts
@@ -114,14 +142,19 @@ export function ScytheCalculatorStepScore({
             </tr>
             {scorePieces.encounterTerritories &&
               scorePieces.polaniaSpecial === 'polania-special-true' && (
-                <tr className="w-full rounded-lg ">
+                <tr className="w-full rounded-lg">
                   <td className="py-3 pl-8 text-left">Encounter Territories</td>
                   <td className="pr-8 text-right">
                     {scorePieces.encounterTerritories || 0} pts
                   </td>
                 </tr>
               )}
-            <tr className="w-full rounded-lg ">
+            <tr
+              className="w-full rounded-lg cursor-pointer"
+              onClick={() => {
+                navigate('../coins');
+              }}
+            >
               <td className="py-3 pl-8 text-left">Coins</td>
               <td className="pr-8 text-right">{scorePieces.coins || 0} pts</td>
             </tr>
