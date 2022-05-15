@@ -44,8 +44,8 @@ export function FormControlNumber({
       type="number"
       inputMode="numeric"
       className={
-        'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md p-2 pr-0' +
-          className || ''
+        'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md p-2 pr-0 border-2 ' +
+        (className || '')
       }
       data-testid="form-control-number"
       onFocus={onFocusHandler}
